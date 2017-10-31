@@ -1,0 +1,18 @@
+<label for="preg" class="rem">Nombre del Tema:</label>
+<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>" onclick="if (this.value=='Nombre Sala Tema') this.value='';"/><p>
+<label for="resp" class="rem">Descripcion:</label>
+<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>" onclick="if (this.value=='Descripcion') this.value='';"/><p>
+<label for="tema" class="rem">Instrumento/Tipo:</label>
+<select name="quiz[tema]">
+ <option value="blue" <%= (quiz.tema === "blue") ? "selected" : "" %> >Blues</option>
+ <option value="brown" <%= (quiz.tema === "brown") ? "selected" : "" %> >Clásica</option>
+ <option value="Chartreuse" <%= (quiz.tema === "Chartreuse") ? "selected" : "" %> >Electrónica</option>
+ <option value="DarkViolet" <%= (quiz.tema === "DarkViolet") ? "selected" : "" %> >Rock</option>
+ <option value="green" <%= (quiz.tema === "green") ? "selected" : "" %> >Reggae</option>
+ <option value="orange" <%= (quiz.tema === "orange") ? "selected" : "" %> >Pop-Rap</option>
+<option value="DarkGray" <%= (quiz.tema === "DarkGray") ? "selected" : "" %> >ENLACES</option>
+</select>
+<a href="javascript:history.back(1);"><button type="button">Cancelar</button></a>
+<input type="submit" value="Salvar">
+
+

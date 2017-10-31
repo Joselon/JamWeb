@@ -1,0 +1,111 @@
+<button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
+<a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
+<div style='border-style:solid;border-color:<%=quiz.tema %>;
+    background: <%=quiz.tema %>;
+    background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
+<h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
+<%if(quiz.tema!='GhostWhite'){ %>
+
+ <label for="nombreSala">Sala:</label>
+ <h3 id="nombreSala"><%=quiz.pregunta%></h3><p>
+ 
+ <%}%>
+<%if (session.user) {%>
+	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Sala</button></a>
+	     <form method="post" action="<%= quiz.id %>?_method=delete">
+		 <div class="form-group">
+			<button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.pregunta %>');">
+                <span class="glyphicon glyphicon-trash"></span> Borrar sala
+		</button>
+		</div>
+		</form>
+	    <%}%>
+	    <br>
+</div>
+<p><strong>Contenidos:</strong></p>
+<p><a href="/quizes/<%=quiz.id%>/comments/new"><button>Nuevo contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
+<p>
+<form>
+<button type="button" onclick="playAll()" >Escuchar Todo <span class="glyphicon glyphicon-music"></span></button>
+<button type="button" onclick="stopAll()" > Stop <span class="glyphicon glyphicon-stop"></span></button>
+</form> 
+<br>
+<%for(index in quiz.Comments){ var comentario='';var autoria='';%>
+	
+	<%if(quiz.Comments[index].publicado ||session.user){%>
+		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
+		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
+         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,4)=='http'){ var $enlace=comentario%><a href="<%=$enlace%>" target="_blank"><%=comentario%><p><small><%=autoria%></small> </p></a></p>
+            <%}else if(comentario.substr(0,3)=='img'){var $enlace=comentario.substring(4)%> <img class="img-responsive"src="<%=$enlace%>" alt="<%=$enlace%>" style="width:100%"><p><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,5)=='audio'){var $enlace=comentario.substring(6)%> <audio controls preload="none" style="width:100%"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,5)=='video'){var $enlace=comentario.substring(6)%> <video controls preload="none" style="width:100%"><source src="<%=$enlace%>" type="video/mp4" > Your browser does not support the video tag.</video><p><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,2)=='yt'){ if(comentario.indexOf('=')!=-1){var $enlace=comentario.substring(quiz.Comments[index].texto.indexOf('=')+1)}else{var $enlace=comentario.substring(quiz.Comments[index].texto.lastIndexOf('/'))}%> <iframe style="width:100%" src="https://www.youtube.com/embed/<%=$enlace%>" frameborder="0" allowfullscreen></iframe><p><small><%=autoria%></small> </p>
+             <%}else if(comentario.substr(0,6)=='iframe'){var $enlace=comentario.substring(7)%><iframe src="<%=$enlace%>" style="width:100%">Navegador no compatible con iframe <%=$enlace%></iframe><small><%=autoria%></small></p>
+	    <%}else{%>
+                    <%=comentario%><small><%=autoria%></small></p>
+            <%}%>
+		<%if(session.user&&!quiz.Comments[index].publicado){%>
+			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
+				<button> Publicar <span class="glyphicon glyphicon-eye-open"></span></button></a>
+		<%}%>
+                <%if(session.user&&quiz.Comments[index].publicado){%>
+			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/hide">
+				<button> Ocultar <span class="glyphicon glyphicon-eye-close"></span></button></a>
+		<%}%>
+                <%if(session.user){%>
+                         <form method="post" action="<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>?_method=delete">
+                        <button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.Comments[index].id%>');">
+						<span class="glyphicon glyphicon-trash"></span>
+                        </button>
+		</form>
+			
+		<%}%>
+		</p></div>
+	<%}%>
+<%}%>
+ <script>
+     var nombretema='Sin Clasificar';
+     switch('<%=quiz.tema%>'){
+     case 'blue':
+         nombretema='Blues';
+         break;
+     case 'orange':
+         nombretema='Pop-Rap';
+         break;
+     case 'Chartreuse':
+         nombretema='Electrónica';
+         break;
+     case 'brown':
+         nombretema='Clásica';
+         break;
+     case 'green':
+         nombretema='Reggae';
+         break;
+     case 'DarkViolet':
+         nombretema='Rock';
+         break;
+     case 'DarkGray':
+         nombretema='ENLACES';
+          break;
+ };
+Tema=document.getElementById("tema");
+Tema.innerHTML=nombretema;
+var audios=document.getElementsByTagName("audio");
+
+function playAll(){
+ 
+ if (audios!=null){
+  for (var i = 0; i < audios.length; i++)
+   audios[i].play();
+  }
+else{
+alert("No hay contenido audio");
+}
+ }
+ function stopAll(){
+ if (audios!=null){
+  for (var i = 0; i < audios.length; i++)
+   audios[i].pause();
+  }
+ }
+ </script>

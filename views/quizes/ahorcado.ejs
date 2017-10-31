@@ -1,0 +1,285 @@
+<script   src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"   integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE="   crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" /> 
+<style type="text/css">
+body{
+	font-size: 1.7em;
+	font-family: Trebuchet MS, verdana, arial, sans-serif;
+}
+.botonletra{
+	font-size: 0.9em;
+	margin: 2px;
+	
+	text-align: center;
+}
+.dialogletra{
+	
+	text-align: center;
+	padding-top: 15px;
+}
+#botonesletras{
+	
+	clear: both;
+}
+#dibujoahorcado{
+	margin-bottom: 20px;
+}
+#letras{
+	font-size: 3em;
+	text-align:center;
+	
+	clear: both;
+	margin-bottom: 10px;
+}
+#letras span{
+	width: 30px;
+	text-align:center;
+	padding-left: 5px;
+}
+</style>
+<script>
+function esta(caracter, miarray){
+  //console.log("buscando ", caracter, " en ", miarray)
+  for(var j=0;j<miarray.length;j++){
+    if (caracter==miarray[j]){
+		return true;
+    }else if(caracter==' '){
+    		return true;
+    }else{
+		//console.log("el caracter ", caracter, " no es el valor del array ",miarray[j] )
+	}
+  }
+  return false;
+}
+
+function estanTodas(arrayAciertos, mipalabra){
+	for(var i=0; i<mipalabra.length; i++){
+		if(!esta(mipalabra.charAt(i),arrayAciertos))
+			return false;
+	}
+	return true;
+}
+////////////////////////////////////////////////////////////////////////////////
+// PALABRAS
+////////////////////////////////////////////////////////////////////////////////
+var palabraEscogida = "<%=quiz.respuesta%>"
+palabraEscogida=palabraEscogida.toLowerCase();
+var aciertos = [];
+
+
+
+function escribePalabra(palabra, arrayAciertos){
+	//console.log("estoy en escribePalabra y arrat de aciertos es: " , arrayAciertos);
+	var texto = '';
+	for(var i=0; i<palabra.length; i++){
+		texto += "<span>";
+		var cActual = palabra.charAt(i);
+		if(esta(cActual,arrayAciertos)){
+			texto += cActual;
+		}
+    else if(cActual==' '){
+      texto +=' ';
+    }
+    else{
+			texto += '_';
+		}
+		texto += "</span>";
+		//console.log(cActual)
+	}
+	$("#letras").html(texto);
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//// inicio todo!!!
+////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function(){
+	
+	//creo los botones con las letras
+	var letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',':',',','Á','É','Í','Ó','Ú','1','2','3','4','5','6','7','8','9','0'];
+	for(i=0; i<letras.length; i++){
+		//creo el span de la letra
+		letraActual = $('<span class="botonletra ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" >' + letras[i] + '</span>');
+		letraActual.data("letra",letras[i]);
+		//lo convierto en un botón
+		letraActual.button();
+		letraActual.click(function(){
+			//traigo la letra pulsada
+			var miletra = $(this).data("letra").toLowerCase();
+			//la cambio a rojo
+			$(this).css("color","red");
+			//miro si esa letra está en la palabra
+			if(palabraEscogida.indexOf(miletra)!=-1){
+				//si está, va para aciertos
+				aciertos.push(miletra);
+				escribePalabra(palabraEscogida, aciertos);
+				//miro si ha ganado
+				if(estanTodas(aciertos,palabraEscogida)){
+					var caja = $('<div class="dialogletra" title="¡Acertada!">Felicidades! has adivinado la respuesta!!</div>');
+					caja.dialog({
+					modal: true,
+					buttons: {
+						"Cerrar": function(){
+							$(this).dialog("close");
+						},
+						"Volver": function(){javascript:history.back(1);}
+					}
+					});	
+				}
+			}else{
+				//no estaba
+				numFallos++;
+				dibujaAhorcado(numFallos);
+				//miro si se ha perdido
+				if(numFallos==6){
+					var caja = $('<div class="dialogletra" title="¡Has Perdido!"> ¡Vuelve a intentarlo!</div>');
+					caja.dialog({
+					modal: true,
+					buttons: {
+						"Volver": function(){
+							javascript:history.back(1);
+						}
+					}
+					});	
+				}
+			}
+			//una vez pulsado el botón, lo desabilito y quito su evento click
+			$(this).button("disable");
+			$(this).unbind( "click" );
+			
+		})
+		$("#botonesletras").append(letraActual);
+	}
+	
+	//inicio el canvas
+	dibujaAhorcado(numFallos);
+	
+	//inicio las palabras
+	escribePalabra(palabraEscogida, aciertos);
+	
+});
+
+/////////////////////////////////
+//CANVAS
+/////////////////////////////////
+function cargaContextoCanvas(idCanvas){
+	var elemento = document.getElementById(idCanvas);
+	if(elemento && elemento.getContext){
+		var contexto = elemento.getContext('2d');
+		if(contexto){
+			return contexto;
+		}
+	}
+	return false;
+}
+function borrarCanvas(contexto, anchura, altura){
+	contexto.clearRect(0,0,anchura,anchura);
+}
+function dibujaHorca(ctx){
+	ctx.fillStyle = '#462501';
+	ctx.fillRect(64,9,26,237);
+	ctx.fillRect(175,193,26,53);
+	ctx.fillRect(64,193,136,15);
+	ctx.fillRect(64,9,115,11);
+	ctx.beginPath();
+	ctx.moveTo(64,65);
+	ctx.lineTo(64,80);
+	ctx.lineTo(133,11);
+	ctx.lineTo(118,11);
+	ctx.fill();
+}
+function dibujaCabeza(ctx){
+	var img = new Image();  
+	img.onload = function(){
+		ctx.fillStyle = '#f2d666';
+		ctx.drawImage(img,155,40,38,38);
+		ctx.fillRect(172,12,4,28);
+	}  
+	img.src = '/images/cabeza.svg'; 
+}
+function dibujaCuerpo(ctx){
+	ctx.beginPath();
+	ctx.moveTo(171,82);
+	ctx.lineTo(168,119);
+	ctx.lineTo(162,147);
+	ctx.lineTo(189,149);
+	ctx.lineTo(185,111);
+	ctx.lineTo(183,83);
+	ctx.fill()
+}
+function dibujaBrazoIzq(ctx){
+	ctx.beginPath();
+	ctx.moveTo(173,102);
+	ctx.lineTo(140,128);
+	ctx.lineTo(155,133);
+	ctx.lineTo(178,114);
+	ctx.fill()
+}
+function dibujaBrazoDer(ctx){
+	ctx.beginPath();
+	ctx.moveTo(180,99);
+	ctx.lineTo(222,121);
+	ctx.lineTo(209,133);
+	ctx.lineTo(183,110);
+	ctx.fill()
+}
+function dibujaPiernaIzq(ctx){
+	ctx.beginPath();
+	ctx.moveTo(166,142);
+	ctx.lineTo(139,175);
+	ctx.lineTo(164,178);
+	ctx.lineTo(175,144);
+	ctx.fill()
+}
+function dibujaPiernaDer(ctx){
+	ctx.beginPath();
+	ctx.moveTo(178,145);
+	ctx.lineTo(193,178);
+	ctx.lineTo(212,170);
+	ctx.lineTo(188,142);
+	ctx.fill()
+}
+////////////////////////////////////////////////////////
+// GESTION DE FALLOS
+////////////////////////////////////////////////////////
+var numFallos = 0;
+function dibujaAhorcado(numerrores){
+	var contexto = cargaContextoCanvas('canvasahorcado');
+	if(contexto){
+		dibujaHorca(contexto);
+		if(numFallos>0){
+			dibujaCabeza(contexto)
+		}
+		contexto.fillStyle = '#1f3e18';
+		if(numFallos>1){
+			dibujaCuerpo(contexto)
+		}
+		if(numFallos>2){
+			dibujaBrazoIzq(contexto)
+		}
+		if(numFallos>3){
+			dibujaBrazoDer(contexto)
+		}
+		if(numFallos>4){
+			dibujaPiernaIzq(contexto)
+		}
+		if(numFallos>5){
+			dibujaPiernaDer(contexto)
+		}
+		
+	}
+}
+
+
+</script>
+<div id="dibujoahorcado">
+	<canvas id="canvasahorcado" width="320" height="250">
+	El Ahorcado sólo funciona en navegadores que soporten Canvas. Actualízate a Firefox o Chrome, por poner dos posibilidades.
+	</canvas>
+</div>
+<div> <%= quiz.pregunta %>
+<div id="letras">
+</div>
+<div id="botonesletras"></div>
+</div>
+<a href='/quizes/<%=quiz.id%>'>Volver</a>

@@ -1,0 +1,20 @@
+* {margin: 0; padding: 0;}              
+html,body { font: 24px Georgia, serif;background-image:url(https://dl.dropboxusercontent.com/u/5057787/fondoCuero.jpg);}
+
+#page-wrap {margin: 2% auto; color: white;}
+#page-wrap > .main {border: 1px solid #999; padding: 1%; margin-bottom: 1px; color: #747A7F;}
+
+section > div {padding: 20px;background: #f61;}
+header {background: #f61; text-align: center;}
+nav {background: #f61;}
+section {background: #f61; text-align: center;overflow:auto;word-wrap: break-word;opacity: 0.5;}
+#tabpreg,#preg,#Tema,a  {background: #f61;color:black;}
+#botoneditar,#botonborrar,#BotonCrea {background: #f61;}
+input,form, button  {background: #f61;}
+footer {background: #f61; text-align: center;}
+nav span {margin: 0px 10px 0px 0px;}
+
+
+#ErrorMsgs {color: #f61; font-size:smaler}
+
+.right	{float:right;}

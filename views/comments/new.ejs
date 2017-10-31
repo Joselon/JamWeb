@@ -1,0 +1,35 @@
+<h2>ESCRIBE / PEGA </h2>
+<small>(Si no eres usuario: será público si es autorizado)</small> <p>
+<form name="form1">
+<div class="form-group">
+<label for="tema">Selecciona el tipo de comentario</label>
+<select name="tema" onchange="javascript:document.getElementById('comment').value=document.form1.tema.options[document.form1.tema.selectedIndex].value;">
+ <option value="">Texto</span></option>
+ <option value="audio-">Audio</option>
+ <option value="">Enlace</option>
+ <option value="img-" >Imagen</option>
+ <option value="video-" >Video</option>
+ <option value="yt-">Youtube</option>
+ <option value="iframe-">Embebido</option>
+</select>
+</div>
+</form>
+
+<form method="post" action="/quizes/<%=quizid%>/comments/">
+<div class="form-group">
+<label for="comment">Escribe Comentario (o pega enlace)</label>
+	<input type="text" id="comment" name="comment[texto]" class="form-control" placeholder="seleccina tipo y pega aqui..."/></p>
+	<button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+</div>
+</form>
+<br>
+<a href="javascript:history.back(1);"><button type="button"><span class="glyphicon glyphicon-floppy-remove"></span> Cancelar</button></a>
+<br>
+<p><span class="glyphicon glyphicon-pencil"></span>
+<span class="glyphicon glyphicon-music"></span>
+ <span class="glyphicon glyphicon-link"></span>
+ <span class="glyphicon glyphicon-picture"></span>
+ <span class="glyphicon glyphicon-film"></span>
+ <span class="glyphicon glyphicon-play-circle"></span>
+ <span class="glyphicon glyphicon-globe"></span>
+ <small>Puedes poner un enlace,selecciona para audio- img-,video-(para videos de youtube yt-) o iframe- </small></p>

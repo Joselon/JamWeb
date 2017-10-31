@@ -1,0 +1,49 @@
+ 
+<form name="form1">
+<div class="form-group">
+<button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
+<label for="tema" class="rem">Filtro:</label>
+<select name="tema" onchange="javascript:window.open('/quizes?search=^'+document.form1.tema.options[document.form1.tema.selectedIndex].value,'_self');">
+ <option value="*" >Estilo musical...</option>
+ <option value="null" >Sin Clasificar</option>
+ <option value="DarkGray" >ENLACES</option>
+ <option value="blue" >Blues</option>
+ <option value="brown">Clásica</option>
+ <option value="Chartreuse">Electrónica</option>
+ <option value="DarkViolet">Rock</option>
+ <option value="green">Reggae</option>
+ <option value="orange">Pop-Rap</option>
+</select>
+</div>
+</form>
+<form method='get' action='/quizes'>
+<div class="form-group">
+ <label for="search">Buscar Salas:</label> 
+ <input type="text"  class="form-control" name="search"/>
+  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<!-- <%if(session.user){%> -->
+<a id="BotonCrea" href="/quizes/new"><button type="button">Crear Sala <span class="glyphicon glyphicon-pencil"></span></button></a>
+<!-- <%}%> -->
+<div class="table-responsive">
+<table class="table table-hover" id="tabpreg">
+
+<% var i; for (i=0;i<quizes.length;i++) { %>
+	<tr><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-indent-left"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border: white 8px outset"><%= quizes[i].pregunta %></a>
+	    </td>
+	    <%if (session.user) {%>
+	      <td id="botoneditar"><a href="quizes/<%= quizes[i].id %>/edit"><button><span class="glyphicon glyphicon-cog"></span></button></a></td>
+	      <td id="botonborrar" >
+		<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+		<button type="submit" onClick="return confirm('Borrar: <%=quizes[i].pregunta %>');">
+		<span class="glyphicon glyphicon-trash"></span>
+		</button>
+		</form>
+	      </td>
+	    <%}%>
+	</tr>
+<% } %>
+</table>
+</div>
+<p>
+<p>

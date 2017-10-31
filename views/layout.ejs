@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset='utf-8'>
+    <title>JamWeb</title>
+<link rel="apple-touch-icon-precomposed" href="/favicon.ico"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--  <link rel='stylesheet' type='text/css' href='/stylesheets/style.css' />
+    <link rel='stylesheet'
+	 type='text/css'
+	 media='only screen and (min-width:530px) and (min-device-width: 481px)'
+	 href='/stylesheets/wide.css' />	
+    <link rel='stylesheet'
+	 type='text/css'
+	 media='only screen and (max-width: 480px)'
+	 href='/stylesheets/smartphone.css' />	  -->
+	  <style>
+	  
+	body {background-image:url(https://www.dropbox.com/s/47t0hbqg71wllvd/fondoOscuro.jpg?dl=1);}
+	a { background-color: #f1f1f1; }
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      height: 100%;
+		opacity: 0.5;
+    }
+	
+	
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+  </style>
+  </head>
+  
+  <body>
+	
+	<nav class="navbar navbar-inverse">
+ 	 <div class="container-fluid">
+    		<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+			<a class="navbar-brand" href="#">JAMWeb</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class='main nav navbar-nav' id='n1' role='navegation'>
+				<li class="active"><a href='/'>Inicio</a></li>
+				<li><a href='/quizes'>Salas</a></li>
+				<li><a href='/author'>Otras Webs</a></span></li>
+				<li><a href='/statistics'>Estadisticas</a></li>
+			</ul>
+			<ul class='main nav navbar-nav navbar-right' id='h1'>
+			<li>
+			<%if(!session.user){%>
+			  <a href="/login"><span class="right glyphicon glyphicon-log-in"> Login</span></a>
+			<%}else{%>
+			  <a href="/logout"><span class="right glyphicon glyphicon-log-out"> <%=session.user.username%> Logout</span></a>
+			<%}%>
+			</li>
+			</ul>
+			
+			</div>		
+	 </div>
+	</nav>
+			
+		<section class='main container-fluid text-center' id='s1' style='opacity: 0.8;'>
+			<% if(errors.length){ %>
+			<span id='ErrorMsgs'>
+			 Corregir errores:<br/>
+			 <% for (var i in errors) { %>
+				<span><%= errors[i].message %></span><br/>
+			<% } %>
+			</span>
+			<% } %>
+			<div class="well"><%- body %></div>
+		</section>
+		
+		<footer class='main container-fluid text-center' id='f1'>
+			
+                        <%if(session.user){%>
+                        <a href='mailto:soporte.jamweb@gmail.com?subject=Sugerencia para JAMWeb&body=Escribe aqui tu sugerencia...'>Sugerencias. Contactar</a>
+                        <%}else{%>
+<a href='mailto:soporte.jamweb@gmail.com?subject=Usuario nuevo de JAMWeb&body=Escribe aqui tu propuesta de usuario y password. Se confirma por correo."'>Solicita usuario</a>
+			</p>
+<%}%>
+		</footer>
+		
+  </body>
+</html>
