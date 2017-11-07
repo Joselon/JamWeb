@@ -1,3 +1,28 @@
+ <script>
+var idSala=0;
+var idContenido=0;
+var my_form;
+var my_tb;
+var comentarioEditar='Texto comentario';
+
+function editaContenido(idSala,idContenido,comentarioEditar){
+	
+
+ my_form=document.createElement('FORM');
+ my_form.method='POST';
+ my_form.action='/quizes/'+idSala+'/comments/'+idContenido+'/update';
+
+ my_tb=document.createElement('INPUT');
+ my_tb.setAttribute('id','comment');
+ my_tb.type='textarea';
+ my_tb.name='comment[texto]';
+ my_tb.setAttribute('style','width:100%');
+ my_tb.value=comentarioEditar;
+ my_form.appendChild(my_tb);
+ document.getElementById('edita'+idContenido).appendChild(my_form);
+
+ };
+ </script>
 <button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
 <a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
 <div style='border-style:solid;border-color:<%=quiz.tema %>;
@@ -11,7 +36,7 @@
  
  <%}%>
 <%if (session.user) {%>
-	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Sala</button></a>
+	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Nombre</button></a>
 	     <form method="post" action="<%= quiz.id %>?_method=delete">
 		 <div class="form-group">
 			<button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.pregunta %>');">
@@ -37,7 +62,8 @@
 		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
          <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,4)=='http'){ var $enlace=comentario%><a href="<%=$enlace%>" target="_blank"><%=comentario%><p><small><%=autoria%></small> </p></a></p>
             <%}else if(comentario.substr(0,3)=='img'){var $enlace=comentario.substring(4)%> <img class="img-responsive"src="<%=$enlace%>" alt="<%=$enlace%>" style="width:100%"><p><small><%=autoria%></small> </p>
-            <%}else if(comentario.substr(0,5)=='audio'){var $enlace=comentario.substring(6)%> <audio controls preload="none" style="width:100%"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+             <%}else if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
             <%}else if(comentario.substr(0,5)=='video'){var $enlace=comentario.substring(6)%> <video controls preload="none" style="width:100%"><source src="<%=$enlace%>" type="video/mp4" > Your browser does not support the video tag.</video><p><small><%=autoria%></small> </p>
             <%}else if(comentario.substr(0,2)=='yt'){ if(comentario.indexOf('=')!=-1){var $enlace=comentario.substring(quiz.Comments[index].texto.indexOf('=')+1)}else{var $enlace=comentario.substring(quiz.Comments[index].texto.lastIndexOf('/'))}%> <iframe style="width:100%" src="https://www.youtube.com/embed/<%=$enlace%>" frameborder="0" allowfullscreen></iframe><p><small><%=autoria%></small> </p>
              <%}else if(comentario.substr(0,6)=='iframe'){var $enlace=comentario.substring(7)%><iframe src="<%=$enlace%>" style="width:100%">Navegador no compatible con iframe <%=$enlace%></iframe><small><%=autoria%></small></p>
@@ -58,14 +84,15 @@
 						<span class="glyphicon glyphicon-trash"></span>
                         </button>
 		</form>
-			
+			<button type="button" onclick="editaContenido(<%=quiz.id %>,<%=quiz.Comments[index].id%>,'<%=quiz.Comments[index].texto%>')" > Editar <span class="glyphicon glyphicon-pencil"></span></button>
+						<div id="edita<%=quiz.Comments[index].id%>" class="form-group container"></div>
 		<%}%>
 		</p></div>
 	<%}%>
 <%}%>
  <script>
-     var nombretema='Sin Clasificar';
-     switch('<%=quiz.tema%>'){
+var nombretema='Sin Clasificar';
+switch('<%=quiz.tema%>'){
      case 'blue':
          nombretema='Blues';
          break;
@@ -87,9 +114,10 @@
      case 'DarkGray':
          nombretema='ENLACES';
           break;
- };
+};
 Tema=document.getElementById("tema");
 Tema.innerHTML=nombretema;
+
 var audios=document.getElementsByTagName("audio");
 
 function playAll(){
@@ -101,11 +129,12 @@ function playAll(){
 else{
 alert("No hay contenido audio");
 }
- }
- function stopAll(){
+ };
+function stopAll(){
  if (audios!=null){
   for (var i = 0; i < audios.length; i++)
    audios[i].pause();
   }
- }
+ };
+
  </script>
