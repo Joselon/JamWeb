@@ -43,7 +43,8 @@ router.post('/quizes/:quizId(\\d+)/comments',	 commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
 					 sessionController.loginRequired, commentController.publish);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/hide',
-					 sessionController.loginRequired, commentController.hide);                                                                              
+					 sessionController.loginRequired, commentController.hide);
+router.post('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/update', sessionController.loginRequired, commentController.update);					 
 router.delete('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)',	 sessionController.loginRequired,commentController.destroy);
 // Definicion de rutas de Estadisticas
 router.get('/statistics', statsController.index);
