@@ -56,7 +56,14 @@ exports.hide=function(req,res) {
 		.then( function(){res.redirect('/quizes/'+req.params.quizId);})
 		.catch(function(error){next(error)});
 };
-
+//POST /quizes/:quizId/comments/:commentId/update
+exports.update=function(req,res){
+    req.comment.texto= req.body.comment.texto
+    req.comment.save({fields: ["texto"]})
+        .then( function(){res.redirect('/quizes/'+req.params.quizId);})
+        .catch(function(error){next(error)});
+};
+ 
 //DELETE 
 
 exports.destroy=function(req,res){
