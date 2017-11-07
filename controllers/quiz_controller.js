@@ -6,7 +6,7 @@ exports.load=function(req, res, next, quizId){
 	models.Quiz.find({
 		where: {id: Number(quizId)},
 		include: [{model:models.Comment}],
-		order:'"Comments"."createdAt" DESC'
+		order:'"Comments"."createdAt" ASC'
 	}).then(
 	 function(quiz){
 	  if(quiz){
@@ -34,9 +34,9 @@ exports.index=function(req, res){
 	  */
 	   models.Quiz.findAll({ include: [{model:models.Comment,
                     where:['"Comments"."createdAt" is not null'],
-                    order:[['"Comments"."createdAt"','DESC']],
+                    order:[['"Comments"."createdAt"','ASC']],
                     group:"Comments.QuizId"}],
-                                order:'"Comments"."createdAt" DESC'
+                                order:'"Comments"."createdAt" ASC'
         }).then(function(quizes){
 		res.render('quizes/index',{quizes:quizes, errors:[],urlBusqueda:urlBusqueda});
 		});
