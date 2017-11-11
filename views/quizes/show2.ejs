@@ -18,6 +18,201 @@ modVolumeRight = 0;
 rateLeft = 1;
 rateRight = 1;
 
+
+
+ </script>
+<button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
+<a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
+<div style='border-style:solid;border-color:<%=quiz.tema %>;
+    background: <%=quiz.tema %>;
+    background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
+<h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
+<%if(quiz.tema!='GhostWhite'){ %>
+
+ <label for="nombreSala">Sala mezclas :</label>
+ <h3 id="nombreSala"><%=quiz.pregunta%></h3><p>
+ 
+ <%}%>
+<%if (session.user) {%>
+	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Nombre</button></a>
+	     <form method="post" action="<%= quiz.id %>?_method=delete">
+		 <div class="form-group">
+			<button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.pregunta %>');">
+                <span class="glyphicon glyphicon-trash"></span> Borrar sala
+		</button>
+		</div>
+		</form>
+	    <%}%>
+	    <br>
+</div>
+<p><strong>Preparando codigo aqui :</strong></p>
+<main>
+  <div id="tutorial-container">
+    <div id="tutorial">
+      <iframe width="711" height="400" src="https://www.youtube.com/embed/16IpkM7ueWU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <p>Cerrar tutorial</p>
+  </div>
+  <div id="credits"><a href="http://www.michelacosta.com">Míchel Acosta</a></div>
+  <div id="tutorial-button">
+    <div>?</div>
+  </div>  
+  <section id="left">
+    <div class="tempo-container"><div class="tempo"></div></div>
+    <div class="load"></div>
+    <div class="sync"></div>
+    <div class="play"></div>
+    <div class="less"></div>
+    <div class="more"></div>
+    <div class="jog paused">
+      <div class="wave"></div>
+    </div>
+    <div class="volume-container"><div class="volume"></div></div>
+    <div class="info">
+      <div class="song"></div>
+      <div class="info-time"></div>
+      <div class="info-tempo"><span>TEMPO: </span><strong>±0.00<span> %</span></strong></div>
+      <input type="range" min="0" max="0" value="0" step="1">
+    </div>
+  </section>
+  <section id="right">
+    <div class="tempo-container"><div class="tempo"></div></div>
+    <div class="load"></div>
+    <div class="sync"></div>
+    <div class="play"></div>
+    <div class="less"></div>
+    <div class="more"></div>
+    <div class="jog paused"></div>
+    <div class="volume-container"><div class="volume"></div></div>
+    <div class="info">
+      <div class="song"></div>
+      <div class="info-time"></div>
+      <div class="info-tempo"><span>TEMPO: </span><strong>±0.00<span> %</span></strong></div>
+      <input type="range" min="0" max="0" value="0" step="1">
+    </div>
+  </section>
+  <section id="crossfade-container">
+    <section id="crossfade"></section>
+  </section>
+</main>
+<div id="songloader-container">
+  <section id="songloader">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Duration</th>
+          <th>BPM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="setSong(1)">
+          <td>Push [Mak & Pasteman Remix]</td>
+          <td>A-Trak feat. Andrew Wyatt</td>
+          <td>06:59</td>
+          <td>126</td>
+        </tr>
+        <tr onclick="setSong(2)">
+          <td>Thinking Of You [Original Mix]</td>
+          <td>South Royston</td>
+          <td>06:44</td>
+          <td>124</td>
+        </tr>
+        <tr onclick="setSong(3)">
+          <td>On A Ragga Tip [Original Mix]</td>
+          <td>My Digital Enemy</td>
+          <td>04:57</td>
+          <td>125</td>
+        </tr>
+        <tr onclick="setSong(4)">
+          <td>90's By Nature [Lucas & Steve Remix]</td>
+          <td>Showtek feat MC Ambush</td>
+          <td>04:37</td>
+          <td>125</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+<p id="log"></p>
+<br>
+<%for(index in quiz.Comments){ var comentario='';var autoria='';%>
+	
+	<%if(quiz.Comments[index].publicado ||session.user){%>
+		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
+		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
+         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+	    <%}else{%>
+                    <%=comentario%><small><%=autoria%></small></p>
+            <%}%>
+		<%if(session.user&&!quiz.Comments[index].publicado){%>
+			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
+				<button> Publicar <span class="glyphicon glyphicon-eye-open"></span></button></a>
+		<%}%>
+                <%if(session.user&&quiz.Comments[index].publicado){%>
+			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/hide">
+				<button> Ocultar <span class="glyphicon glyphicon-eye-close"></span></button></a>
+		<%}%>
+                <%if(session.user){%>
+                         <form method="post" action="<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>?_method=delete">
+                        <button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.Comments[index].id%>');">
+						<span class="glyphicon glyphicon-trash"></span>
+                        </button>
+		</form>
+			<button type="button" onclick="editaContenido(<%=quiz.id %>,<%=quiz.Comments[index].id%>,'<%=quiz.Comments[index].texto%>')" > Editar <span class="glyphicon glyphicon-pencil"></span></button>
+						<div id="edita<%=quiz.Comments[index].id%>" class="form-group container"></div>
+		<%}%>
+		</p></div>
+	<%}%>
+<%}%>
+ <script>
+var nombretema='Sin Clasificar';
+switch('<%=quiz.tema%>'){
+     case 'blue':
+         nombretema='Blues';
+         break;
+     case 'orange':
+         nombretema='Pop-Rap';
+         break;
+     case 'Chartreuse':
+         nombretema='Electrónica';
+         break;
+     case 'brown':
+         nombretema='Clásica';
+         break;
+     case 'green':
+         nombretema='Reggae';
+         break;
+     case 'DarkViolet':
+         nombretema='Rock';
+         break;
+     case 'DarkGray':
+         nombretema='ENLACES';
+          break;
+};
+Tema=document.getElementById("tema");
+Tema.innerHTML=nombretema;
+
+var audios=document.getElementsByTagName("audio");
+
+function playAll(){
+ 
+ if (audios!=null){
+  for (var i = 0; i < audios.length; i++)
+   audios[i].play();
+  }
+else{
+alert("No hay contenido audio");
+}
+ };
+function stopAll(){
+ if (audios!=null){
+  for (var i = 0; i < audios.length; i++)
+   audios[i].pause();
+  }
+ };
 $('#left .play').click(function() {
   if (leftSong != null) {
     diff = (((($('#left .volume').offset().top-482)*-1)*0.5)/54);
@@ -381,200 +576,4 @@ $('#tutorial-button>div').click(function() {
 $('#tutorial-container>p').click(function() {
   $('#tutorial-container').hide();
 });
-
-
- </script>
-<button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
-<a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
-<div style='border-style:solid;border-color:<%=quiz.tema %>;
-    background: <%=quiz.tema %>;
-    background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
-<h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
-<%if(quiz.tema!='GhostWhite'){ %>
-
- <label for="nombreSala">Sala mezclas :</label>
- <h3 id="nombreSala"><%=quiz.pregunta%></h3><p>
- 
- <%}%>
-<%if (session.user) {%>
-	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Nombre</button></a>
-	     <form method="post" action="<%= quiz.id %>?_method=delete">
-		 <div class="form-group">
-			<button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.pregunta %>');">
-                <span class="glyphicon glyphicon-trash"></span> Borrar sala
-		</button>
-		</div>
-		</form>
-	    <%}%>
-	    <br>
-</div>
-<p><strong>Preparando codigo aqui :</strong></p>
-<main>
-  <div id="tutorial-container">
-    <div id="tutorial">
-      <iframe width="711" height="400" src="https://www.youtube.com/embed/16IpkM7ueWU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <p>Cerrar tutorial</p>
-  </div>
-  <div id="credits"><a href="http://www.michelacosta.com">Míchel Acosta</a></div>
-  <div id="tutorial-button">
-    <div>?</div>
-  </div>  
-  <section id="left">
-    <div class="tempo-container"><div class="tempo"></div></div>
-    <div class="load"></div>
-    <div class="sync"></div>
-    <div class="play"></div>
-    <div class="less"></div>
-    <div class="more"></div>
-    <div class="jog paused">
-      <div class="wave"></div>
-    </div>
-    <div class="volume-container"><div class="volume"></div></div>
-    <div class="info">
-      <div class="song"></div>
-      <div class="info-time"></div>
-      <div class="info-tempo"><span>TEMPO: </span><strong>±0.00<span> %</span></strong></div>
-      <input type="range" min="0" max="0" value="0" step="1">
-    </div>
-  </section>
-  <section id="right">
-    <div class="tempo-container"><div class="tempo"></div></div>
-    <div class="load"></div>
-    <div class="sync"></div>
-    <div class="play"></div>
-    <div class="less"></div>
-    <div class="more"></div>
-    <div class="jog paused"></div>
-    <div class="volume-container"><div class="volume"></div></div>
-    <div class="info">
-      <div class="song"></div>
-      <div class="info-time"></div>
-      <div class="info-tempo"><span>TEMPO: </span><strong>±0.00<span> %</span></strong></div>
-      <input type="range" min="0" max="0" value="0" step="1">
-    </div>
-  </section>
-  <section id="crossfade-container">
-    <section id="crossfade"></section>
-  </section>
-</main>
-<div id="songloader-container">
-  <section id="songloader">
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Artist</th>
-          <th>Duration</th>
-          <th>BPM</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr onclick="setSong(1)">
-          <td>Push [Mak & Pasteman Remix]</td>
-          <td>A-Trak feat. Andrew Wyatt</td>
-          <td>06:59</td>
-          <td>126</td>
-        </tr>
-        <tr onclick="setSong(2)">
-          <td>Thinking Of You [Original Mix]</td>
-          <td>South Royston</td>
-          <td>06:44</td>
-          <td>124</td>
-        </tr>
-        <tr onclick="setSong(3)">
-          <td>On A Ragga Tip [Original Mix]</td>
-          <td>My Digital Enemy</td>
-          <td>04:57</td>
-          <td>125</td>
-        </tr>
-        <tr onclick="setSong(4)">
-          <td>90's By Nature [Lucas & Steve Remix]</td>
-          <td>Showtek feat MC Ambush</td>
-          <td>04:37</td>
-          <td>125</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-</div>
-<p id="log"></p>
-<br>
-<%for(index in quiz.Comments){ var comentario='';var autoria='';%>
-	
-	<%if(quiz.Comments[index].publicado ||session.user){%>
-		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
-		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
-         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
-            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
-	    <%}else{%>
-                    <%=comentario%><small><%=autoria%></small></p>
-            <%}%>
-		<%if(session.user&&!quiz.Comments[index].publicado){%>
-			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
-				<button> Publicar <span class="glyphicon glyphicon-eye-open"></span></button></a>
-		<%}%>
-                <%if(session.user&&quiz.Comments[index].publicado){%>
-			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/hide">
-				<button> Ocultar <span class="glyphicon glyphicon-eye-close"></span></button></a>
-		<%}%>
-                <%if(session.user){%>
-                         <form method="post" action="<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>?_method=delete">
-                        <button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.Comments[index].id%>');">
-						<span class="glyphicon glyphicon-trash"></span>
-                        </button>
-		</form>
-			<button type="button" onclick="editaContenido(<%=quiz.id %>,<%=quiz.Comments[index].id%>,'<%=quiz.Comments[index].texto%>')" > Editar <span class="glyphicon glyphicon-pencil"></span></button>
-						<div id="edita<%=quiz.Comments[index].id%>" class="form-group container"></div>
-		<%}%>
-		</p></div>
-	<%}%>
-<%}%>
- <script>
-var nombretema='Sin Clasificar';
-switch('<%=quiz.tema%>'){
-     case 'blue':
-         nombretema='Blues';
-         break;
-     case 'orange':
-         nombretema='Pop-Rap';
-         break;
-     case 'Chartreuse':
-         nombretema='Electrónica';
-         break;
-     case 'brown':
-         nombretema='Clásica';
-         break;
-     case 'green':
-         nombretema='Reggae';
-         break;
-     case 'DarkViolet':
-         nombretema='Rock';
-         break;
-     case 'DarkGray':
-         nombretema='ENLACES';
-          break;
-};
-Tema=document.getElementById("tema");
-Tema.innerHTML=nombretema;
-
-var audios=document.getElementsByTagName("audio");
-
-function playAll(){
- 
- if (audios!=null){
-  for (var i = 0; i < audios.length; i++)
-   audios[i].play();
-  }
-else{
-alert("No hay contenido audio");
-}
- };
-function stopAll(){
- if (audios!=null){
-  for (var i = 0; i < audios.length; i++)
-   audios[i].pause();
-  }
- };
-
  </script>
