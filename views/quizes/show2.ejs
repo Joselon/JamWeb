@@ -217,7 +217,7 @@ $('#left .play').click(function() {
   if (leftSong != null) {
     diff = (((($('#left .volume').offset().top-482)*-1)*0.5)/54);
     currentVolLeft = (0.5+diff) - (modVolumeLeft*(0.5+diff)/100);
-    leftSong.volume = currentVolLeft.toFixed(2);  
+    leftSong.volume = 0.5;//currentVolLeft.toFixed(2);  
     leftSong.playbackRate = rateLeft;
     if ($('#left .jog').hasClass('paused')) {
       $('#left .jog').removeClass('paused');
