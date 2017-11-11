@@ -240,7 +240,7 @@ $('#right .play').click(function() {
   if (rightSong != null) {
     diff = (((($('#right .volume').offset().top-482)*-1)*0.5)/54);
     currentVolRight = (0.5+diff) - (modVolumeRight*(0.5+diff)/100);   
-    rightSong.volume = currentVolRight.toFixed(2);
+    rightSong.volume =0.5;// currentVolRight.toFixed(2);
     rightSong.playbackRate = rateRight;
     if ($('#right .jog').hasClass('paused')) {
       $('#right .jog').removeClass('paused');
