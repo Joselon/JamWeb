@@ -29,7 +29,7 @@ router.get('/logout',	sessionController.destroy);//destruir sesion
 // Definicion de rutas de /quizes
 router.get('/quizes',				quizController.index);
 router.get('/quizes/:quizId(\\d+)', 		quizController.show);
-router.get('/quizes/:quizId(\\d+)/answer', 	quizController.answer);
+router.get('/quizes/:quizId(\\d+)/show2', 	quizController.show2);
 router.get('/quizes/new',		sessionController.loginRequired, quizController.new);
 router.post('/quizes/create',		sessionController.loginRequired, quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit',sessionController.loginRequired, quizController.edit);

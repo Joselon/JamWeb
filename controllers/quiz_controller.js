@@ -87,13 +87,10 @@ exports.show = function(req, res) {
 	 res.render('quizes/show', {quiz:req.quiz,errors:[]});
 };
 
-// GET /quizes/:id/answer
-exports.answer = function(req, res) {
-	var resultado='Incorrecto';	
-	 if(req.query.respuesta === req.quiz.respuesta) {
-	 	resultado='Correcto'
-	 }
-	res.render('quizes/answer',{quiz: req.quiz, respuesta: resultado,errors:[]});
+// GET /quizes/:id/show2
+exports.show2 = function(req, res) {
+	res.render('quizes/show2', {quiz:req.quiz,errors:[]});
+
 	 
 };
 

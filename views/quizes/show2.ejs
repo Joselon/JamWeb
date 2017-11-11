@@ -30,9 +30,8 @@ function editaContenido(idSala,idContenido,comentarioEditar){
     background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
 <h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
 <%if(quiz.tema!='GhostWhite'){ %>
-<a href="<%= quiz.id %>/show2"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Cargar Mesa</button></a>
 
- <label for="nombreSala">Sala:</label>
+ <label for="nombreSala">Sala mezclas :</label>
  <h3 id="nombreSala"><%=quiz.pregunta%></h3><p>
  
  <%}%>
@@ -48,7 +47,7 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 	    <%}%>
 	    <br>
 </div>
-<p><strong>Contenidos:</strong></p>
+<p><strong>Preparando codigo aqui :</strong></p>
 <p><a href="/quizes/<%=quiz.id%>/comments/new"><button>Nuevo contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
 <p>
 <form>
