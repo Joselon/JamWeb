@@ -73,7 +73,7 @@
         </tr>
         <tr onclick="setSong(3)">
           <td>Pista 3</td>
-          <td>My Digital Enemy</td>
+          <td>Autoria</td>
           <td>04:57</td>
           <td>125</td>
         </tr>
@@ -115,6 +115,7 @@
 
  <script>
 var audios=document.getElementsByTagName("audio");
+
 var tempoRange = 20;
 var jogSpeed = 5;
 var timeFactor = 0.1;
@@ -124,6 +125,12 @@ var song2 = new Audio('https://www.dropbox.com/s/q2mfuvb61lvfiov/Improvisacion%2
 var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17%20-%201.m4a?raw=1');
 var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
 
+if (audios.length>0)
+  song1 = audios[1];
+  if(audios.length>1) song2 = audios[2];
+  if(audios.length>2) song3 = audios[3];
+  if(audios.length>3) song4 = audios[4];
+  }
 var leftSong = null;
 var rightSong = null;
 var channel2load = '';
@@ -136,7 +143,7 @@ rateRight = 1;
 
 $('#left .play').click(function() {
   if (leftSong != null) {
-    diff = (((($('#left .volume').offset().top-480)*-1)*0.5)/54);
+    diff = (((($('#left .volume').offset().top-482)*-1)*0.5)/54);
     currentVolLeft = (0.5+diff) - (modVolumeLeft*(0.5+diff)/100);
     leftSong.volume = currentVolLeft.toFixed(2);  
     leftSong.playbackRate = rateLeft;
@@ -159,7 +166,7 @@ $('#left .play').click(function() {
 
 $('#right .play').click(function() {
   if (rightSong != null) {
-    diff = (((($('#right .volume').offset().top-480)*-1)*0.5)/54);
+    diff = (((($('#right .volume').offset().top-482)*-1)*0.5)/54);
     currentVolRight = (0.5+diff) - (modVolumeRight*(0.5+diff)/100);   
     rightSong.volume =currentVolRight.toFixed(2);
     rightSong.playbackRate = rateRight;
@@ -375,22 +382,22 @@ function setSong(id) {
   switch(id) {
     case 1:      
       loader = song1;
-      $('#'+channel2load+' .song').html('A-Trak feat. Andrew Wyatt - Push [Mak & Pasteman Remix]');
+      $('#'+channel2load+' .song').html('Pista 1');
       toggleLoader(channel2load);
       break;
     case 2:
       loader = song2;
-      $('#'+channel2load+' .song').html('South Royston - Thinking Of You [Original Mix]');
+      $('#'+channel2load+' .song').html('Pista 2');
       toggleLoader(channel2load);
       break;
     case 3:
       loader = song3;
-      $('#'+channel2load+' .song').html('My Digital Enemy - On A Ragga Tip [Original Mix]');
+      $('#'+channel2load+' .song').html('Pista 3');
       toggleLoader(channel2load);
       break;
     case 4:
       loader = song4;
-      $('#'+channel2load+' .song').html('Showtek feat MC Ambush	- 90s By Nature [Lucas & Steve Remix]');
+      $('#'+channel2load+' .song').html('Pista 4');
       toggleLoader(channel2load);
       break;
   }  
@@ -424,7 +431,7 @@ function requestSong() {
   title = '¡No has cargado una canción!';
   options = {
     body: 'Carga una canción en este canal pulsando el botón "LOAD"',
-    icon: 'http://www.michelacosta.com/yo.png',
+    icon: 'https://www.michelacosta.com/yo.png',
   }
   Notification.requestPermission(function(status) {
     new Notification(title, options);
@@ -435,7 +442,7 @@ function askToPause() {
   title = '¡Tienes que parar la reproducción!';
   options = {
     body: 'Para la reproducción antes de cargar otro tema',
-    icon: 'http://www.michelacosta.com/yo.png',
+    icon: 'https://www.michelacosta.com/yo.png',
   }
   Notification.requestPermission(function(status) {
     new Notification(title, options);
@@ -446,7 +453,7 @@ function dislike() {
   title = '¡Desprecio infinito!';
   options = {
     body: 'No nos gustan los DJs que usan el SYNC',
-    icon: 'http://www.michelacosta.com/yo.png',
+    icon: 'https://www.michelacosta.com/yo.png',
   }
   Notification.requestPermission(function(status) {
     new Notification(title, options);
