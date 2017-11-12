@@ -12,7 +12,7 @@ exports.load=function(req, res, next, quizId){
 	  if(quiz){
 		req.quiz=quiz;
 	  	next();
-	  }else{next(new Error('No existe quizId='+quizId));}
+	  }else{next(new Error('No existe la Sala='+quizId));}
 	 }
 	).catch(function(error){ next(error);});
 };
