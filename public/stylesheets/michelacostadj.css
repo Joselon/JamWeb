@@ -87,7 +87,7 @@ main {
   position:relative;
   width:900px;
   height:499px;
-  background-image:url(https://www.michelacosta.com/images/2qyIBfw.jpg);
+  background-image:url('/images/2qyIBfw.jpg');
   margin:78px auto 0 auto;
 }
 
@@ -157,7 +157,7 @@ main {
 #left .jog {
   width:262px;
   height:262px;
-  background-image:url(https://www.michelacosta.com/images/eOI2jNr.png);
+  background-image:url('images/eOI2jNr.png');
   left:77px;
   top:149px;
   animation: girar infinite linear;
@@ -177,7 +177,7 @@ main {
   height:20px;
   left:35px;
   top:91px;
-  background-image:url(https://www.michelacosta.com/images/OBlswus.png);
+  background-image:url('/images/OBlswus.png');
 }
 
 #left .volume {
@@ -185,7 +185,7 @@ main {
   height:20px;
   left:389px;
   top:278px;
-  background-image:url(https://www.michelacosta.com/images/OBlswus.png);
+  background-image:url('/images/OBlswus.png');
 }
 
 .info {
@@ -284,7 +284,7 @@ main {
 #right .jog {
   width:262px;
   height:262px;
-  background-image:url(https://www.michelacosta.com/images/eOI2jNr.png);
+  background-image:url('/images/eOI2jNr.png');
   left:562px;
   top:149px;
   animation: girar infinite linear;
@@ -296,7 +296,7 @@ main {
   height:20px;
   left:818px;
   top:91px;
-  background-image:url(https://www.michelacosta.com/images/OBlswus.png);
+  background-image:url('/images/OBlswus.png');
 }
 
 #right .volume {
@@ -304,7 +304,7 @@ main {
   height:20px;
   left:465px;
   top:278px;
-  background-image:url(https://www.michelacosta.com/images/OBlswus.png);
+  background-image:url('/images/OBlswus.png');
 }
 
 #right .play {
@@ -417,7 +417,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   width:24px;
   height:46px;
   left:57px;
-  background-image:url(https://www.michelacosta.com/images/5bR284h.png);  
+  background-image:url('/images/5bR284h.png);  
 }
 
 @keyframes girar {
