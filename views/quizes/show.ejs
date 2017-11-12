@@ -47,6 +47,14 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 		</form>
 	    <%}%>
 	    <br>
+ <a class="left carousel-control" href="/quizes" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+                <a class="right carousel-control" href="/quiz/<%=quiz.id+1%>" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
 </div>
 <p><strong>Contenidos:</strong></p>
 <p><a href="/quizes/<%=quiz.id%>/comments/new"><button>Nuevo contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
