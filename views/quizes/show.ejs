@@ -27,7 +27,9 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 <a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
 <div style='border-style:solid;border-color:<%=quiz.tema %>;
     background: <%=quiz.tema %>;
-    background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
+    /*background: -webkit-linear-gradient(white,<%=quiz.tema %>);*/
+background-image:url(“/images/graba.png”);
+background-repeat:no-repeat;'  >
 <h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
 <%if(quiz.tema!='GhostWhite'){ %>
 <p><a href="<%= quiz.id %>/show2"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Cargar Mesa</button></a>
@@ -47,7 +49,7 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 		</form>
 	    <%}%>
 	    <br>
- <a class="left carousel-control" href="/quizes" role="button" data-slide="prev">
+ <a class="left carousel-control" href="/quizes/<%=quiz.id-1%>" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     <span class="sr-only">Siguiente</span>
                 </a>
