@@ -37,7 +37,7 @@ function editaContenido(idSala,idContenido,comentarioEditar){
  
  <%}%>
 <%if (session.user) {%>
-	     <a href="<%= quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Nombre</button></a>
+	     <a href="<%=quiz.id %>/edit"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Editar Nombre</button></a>
 	     <form method="post" action="<%= quiz.id %>?_method=delete">
 		 <div class="form-group">
 			<button type="submit" id="botonborrar" onClick="return confirm('Borrar: <%=quiz.pregunta %>');">
@@ -47,6 +47,14 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 		</form>
 	    <%}%>
 	    <br>
+                <a class="left carousel-control" href="/quizes" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+                <a class="right carousel-control" href="/quiz/<%=quiz.id+1%>" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
 </div>
 <p><strong>Contenidos:</strong></p>
 <p><a href="/quizes/<%=quiz.id%>/comments/new"><button>Nuevo contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
