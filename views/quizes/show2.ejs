@@ -62,25 +62,25 @@
         <tr onclick="setSong(1)">
           <td>Pista 1</td>
           <td>Autoria</td>
-          <td>04:00</td>
+          <td>—:—</td>
           <td>126</td>
         </tr>
         <tr onclick="setSong(2)">
           <td>Pista 2</td>
           <td>Autoria</td>
-          <td>04:10</td>
+          <td>—:—</td>
           <td>124</td>
         </tr>
         <tr onclick="setSong(3)">
           <td>Pista 3</td>
           <td>Autoria</td>
-          <td>04:57</td>
+          <td>—:—</td>
           <td>125</td>
         </tr>
         <tr onclick="setSong(4)">
           <td>Pista 4</td>
           <td>Autoria</td>
-          <td>04:37</td>
+          <td>—:—</td>
           <td>125</td>
         </tr>
       </tbody>
@@ -126,10 +126,10 @@ var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17
 var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
 
 if (audios.length>0){
-  song1 = audios[1];
-  if(audios.length>1) song2 = audios[2];
-  if(audios.length>2) song3 = audios[3];
-  if(audios.length>3) song4 = audios[4];
+  song1 = audios[0];
+  if(audios.length>1) song2 = audios[1];
+  if(audios.length>2) song3 = audios[2];
+  if(audios.length>3) song4 = audios[3];
   }
 var leftSong = null;
 var rightSong = null;
