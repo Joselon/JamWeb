@@ -30,8 +30,8 @@ function editaContenido(idSala,idContenido,comentarioEditar){
     background: -webkit-linear-gradient(white,<%=quiz.tema %>);'  >
 <h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
 <%if(quiz.tema!='GhostWhite'){ %>
-<a href="<%= quiz.id %>/show2"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Cargar Mesa</button></a>
-
+<p><a href="<%= quiz.id %>/show2"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Cargar Mesa</button></a>
+</p>
  <label for="nombreSala">Sala:</label>
  <h3 id="nombreSala"><%=quiz.pregunta%></h3><p>
  
