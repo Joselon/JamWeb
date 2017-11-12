@@ -157,7 +157,7 @@ main {
 #left .jog {
   width:262px;
   height:262px;
-  background-image:url('images/eOI2jNr.png');
+  background-image:url('/images/eOI2jNr.png');
   left:77px;
   top:149px;
   animation: girar infinite linear;
@@ -417,7 +417,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   width:24px;
   height:46px;
   left:57px;
-  background-image:url('/images/5bR284h.png);  
+  background-image:url('/images/5bR284h.png');  
 }
 
 @keyframes girar {
