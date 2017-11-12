@@ -89,7 +89,7 @@
 </div>
 <p id="log"></p>
 <br>
-
+<div style='display:none'>
 <%for(index in quiz.Comments){ var comentario='';var autoria='';%>
 	
 	<%if(quiz.Comments[index].publicado ||session.user){%>
@@ -112,6 +112,7 @@
 		</p></div>
 	<%}%>
 <%}%>
+</div>
 
  <script>
 var audios=document.getElementsByTagName("audio");
