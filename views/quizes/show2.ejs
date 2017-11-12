@@ -1,24 +1,3 @@
- <script>
- var tempoRange = 20;
-var jogSpeed = 5;
-var timeFactor = 0.1;
-
-var song1 = new Audio('https://www.dropbox.com/s/c3imita5evqi4zi/Improvisacion%232DarcyBateria.m4a?raw=1');
-var song2 = new Audio('https://www.dropbox.com/s/q2mfuvb61lvfiov/Improvisacion%232tenor.m4a?raw=1');
-var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17%20-%201.m4a?raw=1');
-var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
-
-var leftSong = null;
-var rightSong = null;
-var channel2load = '';
-
-modVolumeLeft = 0;
-modVolumeRight = 0;
-
-rateLeft = 1;
-rateRight = 1;
-
- </script>
 <main>
   <div id="tutorial-container">
     <div id="tutorial">
@@ -26,7 +5,6 @@ rateRight = 1;
     </div>
     <p>Cerrar tutorial</p>
   </div>
-  <div id="credits"><a href="http://www.michelacosta.com">Míchel Acosta</a></div>
   <div id="tutorial-button">
     <div>?</div>
   </div>  
@@ -110,6 +88,7 @@ rateRight = 1;
 </div>
 <p id="log"></p>
 <br>
+ <div id="credits"><a href="http://www.michelacosta.com">Míchel Acosta</a></div>
 <%for(index in quiz.Comments){ var comentario='';var autoria='';%>
 	
 	<%if(quiz.Comments[index].publicado ||session.user){%>
@@ -134,10 +113,28 @@ rateRight = 1;
 <%}%>
  <script>
 var audios=document.getElementsByTagName("audio");
+var tempoRange = 20;
+var jogSpeed = 5;
+var timeFactor = 0.1;
+
+var song1 = new Audio('https://www.dropbox.com/s/c3imita5evqi4zi/Improvisacion%232DarcyBateria.m4a?raw=1');
+var song2 = new Audio('https://www.dropbox.com/s/q2mfuvb61lvfiov/Improvisacion%232tenor.m4a?raw=1');
+var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17%20-%201.m4a?raw=1');
+var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
+
+var leftSong = null;
+var rightSong = null;
+var channel2load = '';
+
+modVolumeLeft = 0;
+modVolumeRight = 0;
+
+rateLeft = 1;
+rateRight = 1;
 
 $('#left .play').click(function() {
   if (leftSong != null) {
-    diff = (((($('#left .volume').offset().top-482)*-1)*0.5)/54);
+    diff = (((($('#left .volume').offset().top-480)*-1)*0.5)/54);
     currentVolLeft = (0.5+diff) - (modVolumeLeft*(0.5+diff)/100);
     leftSong.volume = currentVolLeft.toFixed(2);  
     leftSong.playbackRate = rateLeft;
@@ -160,7 +157,7 @@ $('#left .play').click(function() {
 
 $('#right .play').click(function() {
   if (rightSong != null) {
-    diff = (((($('#right .volume').offset().top-482)*-1)*0.5)/54);
+    diff = (((($('#right .volume').offset().top-480)*-1)*0.5)/54);
     currentVolRight = (0.5+diff) - (modVolumeRight*(0.5+diff)/100);   
     rightSong.volume =currentVolRight.toFixed(2);
     rightSong.playbackRate = rateRight;
