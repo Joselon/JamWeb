@@ -196,7 +196,7 @@ main {
   border-radius:5px;
   border:2px solid #333;
   box-shadow:0 0 10px #555 inset;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 #left .info {
