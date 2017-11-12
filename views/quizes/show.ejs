@@ -1,4 +1,8 @@
- <script>
+<% if (quiz==undefined){%>
+<a href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a><br>
+<a href="<%= quiz.id %>/show2"><button id="botoneditar"><span class="glyphicon glyphicon-cog"></span> Cargar Mesa</button></a>
+<%} else {%>
+<script>
 var idSala=0;
 var idContenido=0;
 var my_form;
@@ -149,3 +153,4 @@ function stopAll(){
  };
 
  </script>
+<%}%>
