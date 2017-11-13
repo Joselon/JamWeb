@@ -75,7 +75,7 @@ background-repeat:no-repeat;'  >
 	<%if(quiz.Comments[index].publicado ||session.user){%>
 		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
 		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
-         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,4)=='http'){ var $enlace=comentario%><a href="<%=$enlace%>" target="_blank"><%=comentario%><p><small><%=autoria%></small> </p></a></p>
+         <div class='container comenteiner'><p style="border: white 8px outset;background-color=#FOFFFF;">-<%if(comentario.substr(0,4)=='http'){ var $enlace=comentario%><a href="<%=$enlace%>" target="_blank"><%=comentario%><p><small><%=autoria%></small> </p></a></p>
             <%}else if(comentario.substr(0,3)=='img'){var $enlace=comentario.substring(4)%> <img class="img-responsive"src="<%=$enlace%>" alt="<%=$enlace%>" style="width:100%"><p><small><%=autoria%></small> </p>
              <%}else if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
             <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
