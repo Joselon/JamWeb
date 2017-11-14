@@ -265,97 +265,6 @@ $("#crossfade").draggable({
   containment: 'parent'
 });
 
-function marqueeLeft() {
-  $('#left .song').css('left', '100%');
-  $('#left .song').animate({ 'left': (0 - $('#left .song').width()) }, 5000, 'linear', marqueeLeft);
-}
-
-function marqueeRight() {
-    $('#right .song').css('left', '100%');
-    $('#right .song').animate({ 'left': (0 - $('#right .song').width()) }, 5000, 'linear', marqueeRight);
-}
-
-function marqueeRightStop() {
-  $('#right .song').stop();
-	$('#right .song').animate({'left': '0'});
-}
-
-function marqueeLeftStop() {
-  $('#left .song').stop();
-  $('#left .song').animate({'left': '0'});
-}
-
-function dragLeftTempo() {
-  dragTempo('#left');
-}
-
-function dragRightTempo() {
-  dragTempo('#right');
-}
-
-function dragLeftVolume() {
-  if (leftSong != null) {  
-    dragVolume('#left');
-  }
-}
-
-function dragRightVolume() {
-  if (rightSong != null) {      
-    dragVolume('#right');
-  }
-}
-
-function dragTempo(side) {
-    val = (($(side+' .tempo').offset().top - 240.5) * tempoRange / 53.5).toFixed(2);
-  	$(side+' .jog').css('animation-duration', jogSpeed-((jogSpeed*(val)/100))+'s');
-    if (val > 0) {
-      val = '+' + val;
-    }
-    $(side+' .info-tempo > strong').html(val+'<span> %</span>');
-  switch(side) {
-    case '#left':
-      rateLeft = (1+(val/100)).toFixed(2);
-      break;
-    case '#right':
-      rateRight = (1+(val/100)).toFixed(2);
-      break;
-  }  
-}
-
-function dragVolume(side) {
-  diff = ((($(side+' .volume').offset().top-482)*-1)*0.5)/54;
-  	switch(side) {
-      case '#left':
-	    	leftSong.volume = ((0.5+diff) - (modVolumeLeft*(0.5+diff)/100)).toFixed(2);
-        break;
-      case '#right':
-        rightSong.volume = ((0.5+diff) - (modVolumeRight*(0.5+diff)/100)).toFixed(2);
-        break;       
-    }
-}
-
-function crossFade() {
-  currentVolLeft = (0.5+((($('#left .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);
-  currentVolRight = (0.5+((($('#right .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);  
-  if ($('#crossfade').position().left-57 < 0) {
-    modVolumeLeft = 0;
-    modVolumeRight = (($('#crossfade').position().left-57)*100/-57).toFixed(2);
-  }
-  else if ($('#crossfade').position().left-57 > 0) {
-    modVolumeRight = 0;
-    modVolumeLeft = (($('#crossfade').position().left-57)*100/57).toFixed(2);
-  }
-  else {
-    modVolumeLeft = 0;
-    modVolumeRight = 0;
-  }
-  if (leftSong != null) {
-    leftSong.volume = currentVolLeft - (modVolumeLeft*currentVolLeft/100).toFixed(2);
-  }
-  if (rightSong != null) {
-  	rightSong.volume = currentVolRight - (modVolumeRight*currentVolRight/100).toFixed(2);
-  }
-}
 
 $('#left .less').click(function() {
   if (leftSong != null) {    
@@ -393,6 +302,63 @@ $('#right .more').click(function() {
   }
 });
 
+$('#left input').change(function() {
+  if (leftSong != null) {
+  	leftSong.currentTime = $(this).val();
+  }
+});
+
+$('#right input').change(function() {
+  if (rightSong != null) {
+  	rightSong.currentTime = $(this).val();
+  }    
+});
+
+$('.sync').click(function() {
+  dislike();
+});
+
+$('#tutorial-button>div').click(function() {
+  $('#tutorial-container').show();
+});
+
+$('#tutorial-container>p').click(function() {
+  $('#tutorial-container').hide();
+});
+//Micro adelantos y retrasos
+$("#left .jog").on("swipeleft",function(){
+   if (leftSong != null) {    
+  	leftSong.currentTime-=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+});
+$("#left .jog").on("swiperight",function(){
+  if (leftSong != null) {    
+  	leftSong.currentTime+=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+}) ;
+$("#right .jog").on("swipeleft",function(){
+   if (rightSong != null) {    
+  	rightSong.currentTime-=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+});
+$("#right .jog").on("swiperight",function(){
+  if (rightSong != null) {    
+  	rightSong.currentTime+=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+});
+//FUNCIONES
 function setSong(id) {
   $('#'+channel2load+' .info-time').html('00:00');
   $('#'+channel2load+' input').attr('max', 0);
@@ -498,28 +464,96 @@ function getTime(seconds) {
   if (sec < 10){ sec  = "0" + sec; }
   return min + ':' + sec;
 }
+function marqueeLeft() {
+  $('#left .song').css('left', '100%');
+  $('#left .song').animate({ 'left': (0 - $('#left .song').width()) }, 5000, 'linear', marqueeLeft);
+}
 
-$('#left input').change(function() {
-  if (leftSong != null) {
-  	leftSong.currentTime = $(this).val();
+function marqueeRight() {
+    $('#right .song').css('left', '100%');
+    $('#right .song').animate({ 'left': (0 - $('#right .song').width()) }, 5000, 'linear', marqueeRight);
+}
+
+function marqueeRightStop() {
+  $('#right .song').stop();
+	$('#right .song').animate({'left': '0'});
+}
+
+function marqueeLeftStop() {
+  $('#left .song').stop();
+  $('#left .song').animate({'left': '0'});
+}
+
+function dragLeftTempo() {
+  dragTempo('#left');
+}
+
+function dragRightTempo() {
+  dragTempo('#right');
+}
+
+function dragLeftVolume() {
+  if (leftSong != null) {  
+    dragVolume('#left');
   }
-});
+}
 
-$('#right input').change(function() {
+function dragRightVolume() {
+  if (rightSong != null) {      
+    dragVolume('#right');
+  }
+}
+
+function dragTempo(side) {
+    val = (($(side+' .tempo').offset().top - 240.5) * tempoRange / 53.5).toFixed(2);
+  	$(side+' .jog').css('animation-duration', jogSpeed-((jogSpeed*(val)/100))+'s');
+    if (val > 0) {
+      val = '+' + val;
+    }
+    $(side+' .info-tempo > strong').html(val+'<span> %</span>');
+  switch(side) {
+    case '#left':
+      rateLeft = (1+(val/100)).toFixed(2);
+      break;
+    case '#right':
+      rateRight = (1+(val/100)).toFixed(2);
+      break;
+  }  
+}
+
+function dragVolume(side) {
+  diff = ((($(side+' .volume').offset().top-482)*-1)*0.5)/54;
+  	switch(side) {
+      case '#left':
+	    	leftSong.volume = ((0.5+diff) - (modVolumeLeft*(0.5+diff)/100)).toFixed(2);
+        break;
+      case '#right':
+        rightSong.volume = ((0.5+diff) - (modVolumeRight*(0.5+diff)/100)).toFixed(2);
+        break;       
+    }
+}
+
+function crossFade() {
+  currentVolLeft = (0.5+((($('#left .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);
+  currentVolRight = (0.5+((($('#right .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);  
+  if ($('#crossfade').position().left-57 < 0) {
+    modVolumeLeft = 0;
+    modVolumeRight = (($('#crossfade').position().left-57)*100/-57).toFixed(2);
+  }
+  else if ($('#crossfade').position().left-57 > 0) {
+    modVolumeRight = 0;
+    modVolumeLeft = (($('#crossfade').position().left-57)*100/57).toFixed(2);
+  }
+  else {
+    modVolumeLeft = 0;
+    modVolumeRight = 0;
+  }
+  if (leftSong != null) {
+    leftSong.volume = currentVolLeft - (modVolumeLeft*currentVolLeft/100).toFixed(2);
+  }
   if (rightSong != null) {
-  	rightSong.currentTime = $(this).val();
-  }    
-});
+  	rightSong.volume = currentVolRight - (modVolumeRight*currentVolRight/100).toFixed(2);
+  }
+}
 
-$('.sync').click(function() {
-  dislike();
-});
-
-$('#tutorial-button>div').click(function() {
-  $('#tutorial-container').show();
-});
-
-$('#tutorial-container>p').click(function() {
-  $('#tutorial-container').hide();
-});
  </script>
