@@ -92,10 +92,10 @@ main {
 }
 
 #songloader-container {
-  width:100%;
+  width:75%;
   height:150px;
   position:fixed;
-  top:20px;
+  top:30px;
   margin:auto;
   overflow:hidden;
 }
