@@ -68,7 +68,7 @@ body {
 #credits {  
   position:absolute;
   font-size:55px;
-  top:492px;
+  top:560px;
   left:352px;
   margin:auto;  
   font-family: 'Kristi', sans-serif;
@@ -88,14 +88,14 @@ main {
   width:900px;
   height:499px;
   background-image:url('/images/2qyIBfw.jpg');
-  margin:78px auto 0 auto;
+ /* margin:78px auto 0 auto;*/
 }
 
 #songloader-container {
   width:100%;
   height:150px;
   position:fixed;
-  top:35px;
+  top:20px;
   margin:auto;
   overflow:hidden;
 }
