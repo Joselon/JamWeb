@@ -132,7 +132,7 @@ if (audios.length>0){
   if(audios.length>2) song3 = audios[2];
   if(audios.length>3) song4 = audios[3];
   }
-song1.addEventListener("canplaythrough", function () {
+/*song1.addEventListener("canplaythrough", function () {
    alert('Pista 1 cargada!');
  }, false);
 song2.addEventListener("canplaythrough", function () {
@@ -144,18 +144,18 @@ song3.addEventListener("canplaythrough", function () {
  }, false);
 song4.addEventListener("canplaythrough", function () {
    alert('Pista 4 cargada!');
- }, false);
+ }, false);*/
 
 
 var leftSong = null;
 var rightSong = null;
 var channel2load = '';
 
-modVolumeLeft = 0;
-modVolumeRight = 0;
-
-rateLeft = 1;
-rateRight = 1;
+var modVolumeLeft = 0;
+var modVolumeRight = 0;
+var diff;
+var rateLeft = 1;
+var rateRight = 1;
 
 $('#left .play').click(function() {
   if (leftSong != null) {
