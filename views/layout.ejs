@@ -2,17 +2,18 @@
 <html>
 <head>
  <meta charset='utf-8'>
- <title>JamWeb</title>
+ <title>JamWeb2</title>
  <link rel="manifest" href="/manifest.json">
  <link rel="apple-touch-icon-precomposed" href="/favicon.ico"/>
  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Rosarivo' rel='stylesheet' type='text/css'>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
  <link rel='stylesheet' type='text/css' href='/stylesheets/michelacostadj.css' />
- <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
- <link href='https://fonts.googleapis.com/css?family=Rosarivo' rel='stylesheet' type='text/css'>
+
   <!--  <link rel='stylesheet' type='text/css' href='/stylesheets/style.css' />
     <link rel='stylesheet'
 	 type='text/css'
@@ -25,7 +26,7 @@
 	  
 <style>
 	
-	body {background-image:url(https://www.dropbox.com/s/47t0hbqg71wllvd/fondoOscuro.jpg?raw=1);}
+	body {background-color:#000);}
 	a { background-color: #f1f1f1;}
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -73,7 +74,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-			<a class="navbar-brand" href="/quizes">JAMWeb</a>
+			<a class="navbar-brand" href="/quizes">JAMWeb2</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class='main nav navbar-nav' id='n1' role='navegation'>
@@ -82,7 +83,7 @@
 				<li><a href='/author'>Otras Webs</a></span></li>
 				<li><a href='/statistics'>Estadisticas</a></li>
 			</ul>
-			<ul class='main nav navbar-nav navbar-right' id='h1'>
+			<ul class='nav navbar-nav navbar-right' id='h1'>
 			<li>
 			<%if(!session.user){%>
 			  <a href="/login"><span class="right glyphicon glyphicon-log-in"> Login</span></a>
@@ -96,7 +97,7 @@
 	 </div>
 	</nav>
 			
-		<section class='main container-fluid text-center' id='s1' style='opacity: 0.8;'>
+		<section class='container-fluid text-center' id='s1' style='opacity: 0.8;'>
 			<% if(errors.length){ %>
 			<span id='ErrorMsgs'>
 			 Corregir errores:<br/>
@@ -108,7 +109,7 @@
 			<div class="well"style="inline-size: fit-content;background-color:#000"><%- body %></div>
 		</section>
 		
-		<footer class='main container-fluid text-center' id='f1'>
+		<footer class='container-fluid text-center' id='f1'>
 			
                         <%if(session.user){%>
                         <a href='mailto:soporte.jamweb@gmail.com?subject=Sugerencia para JAMWeb&body=Escribe aqui tu sugerencia...'>Sugerencias. Contactar</a>
