@@ -1,0 +1,15 @@
+{
+  "short_name": "JamWeb2app",
+  "name": "Jam Web App",
+  "icons": [
+    {
+      "src":"images/graba.png",
+      "sizes": "272x226",
+      "type": "img/png"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#000",
+  "Theme_color": "#536878",
+  "display": "standalone"
+}
