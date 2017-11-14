@@ -153,9 +153,11 @@ var channel2load = '';
 
 var modVolumeLeft = 0;
 var modVolumeRight = 0;
-var diff;
+var diff=0.5;
 var rateLeft = 1;
 var rateRight = 1;
+var currentVolLeft=1;
+var currentVolRight=1;
 
 $('#left .play').click(function() {
   if (leftSong != null) {
