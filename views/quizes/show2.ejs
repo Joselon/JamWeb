@@ -1,5 +1,5 @@
 <div id="AvisoCarga" class="alert alert-danger">
-<p><strong>¡Espera!</strong> Se esta cargando la informacion de las pistas.<small>Si no desaparece este mensaje en unos segundos, recarga la pagina </small></p>
+<p><strong>¡Espera!</strong> Se está cargando la información de las pistas.<small>Si no desaparece este mensaje en unos segundos, recarga la página </small></p>
 </div>
 <main>
   <div id="tutorial-container">
@@ -98,8 +98,8 @@
 	<%if(quiz.Comments[index].publicado ||session.user){%>
 		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
 		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
-         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls loop preload="metadata"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
-            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls loop preload="metadata"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
+         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
 	    <%}else{%>
                     <%=comentario%><small><%=autoria%></small></p>
             <%}%>
@@ -124,10 +124,10 @@ var tempoRange = 20;
 var jogSpeed = 5;
 var timeFactor = 0.1;
 
-var song1 = new Audio('https://www.dropbox.com/s/c3imita5evqi4zi/Improvisacion%232DarcyBateria.m4a?raw=1');
-var song2 = new Audio('https://www.dropbox.com/s/q2mfuvb61lvfiov/Improvisacion%232tenor.m4a?raw=1');
-var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17%20-%201.m4a?raw=1');
-var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
+var song1 = new Audio('SonidoMonedaM.m4a');
+var song2 = new Audio('SonidoMonedaM.m4a');
+var song3 = new Audio('SonidoMonedaM.m4a');
+var song4 = new Audio('SonidoMonedaM.m4a');
 var minutos=0;
 var segundos=0;
 
@@ -559,8 +559,8 @@ function dragRightVolume() {
 }
 
 function dragTempo(side) {
-    val = (($(side+'.tempo').offset().top - 240.5) * tempoRange / 53.5).toFixed(2);
-  	$(side+'.jog').css('animation-duration', jogSpeed-((jogSpeed*(val)/100))+'s');
+    val = (($(side+' .tempo').offset().top - 240.5) * tempoRange / 53.5).toFixed(2);
+  	$(side+' .jog').css('animation-duration', jogSpeed-((jogSpeed*(val)/100))+'s');
     if (val > 0) {
       val = '+' + val;
     }
@@ -576,7 +576,7 @@ function dragTempo(side) {
 }
 
 function dragVolume(side) {
-  diff = ((($(side+'.volume').offset().top-482)*-1)*0.5)/54;
+  diff = ((($(side+' .volume').offset().top-482)*-1)*0.5)/54;
   	switch(side) {
       case '#left':
 	    	leftSong.volume = ((0.5+diff) - (modVolumeLeft*(0.5+diff)/100)).toFixed(2);
@@ -588,8 +588,8 @@ function dragVolume(side) {
 }
 
 function crossFade() {
-  currentVolLeft = (0.5+((($('#left.volume').offset().top-482)*-1)*0.5)/54).toFixed(2);
-  currentVolRight = (0.5+((($('#right.volume').offset().top-482)*-1)*0.5)/54).toFixed(2);  
+  currentVolLeft = (0.5+((($('#left .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);
+  currentVolRight = (0.5+((($('#right .volume').offset().top-482)*-1)*0.5)/54).toFixed(2);  
   if ($('#crossfade').position().left-57 < 0) {
     modVolumeLeft = 0;
     modVolumeRight = (($('#crossfade').position().left-57)*100/-57).toFixed(2);
