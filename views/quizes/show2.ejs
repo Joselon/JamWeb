@@ -98,12 +98,13 @@
 	
 	<%if(quiz.Comments[index].publicado ||session.user){%>
 		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
-		else{ comentario=quiz.Comments[index].texto;autoria='';} %>
+		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
          <div> <%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small></p>
 </div>
             <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
 </div>
 	<%}%>
+<%}%>
 <%}%>
 </div>
 
