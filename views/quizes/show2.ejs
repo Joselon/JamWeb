@@ -138,7 +138,7 @@ song1.addEventListener("loadedmetadata", function () {
  var segundos=0;
  if(song1.duration>60){
   minutos=(song1.duration/60).toFixed(0);
-  segundos=(song1.duration-minutos*60).toFixed(0);
+  segundos=(song1.duration-minutos*60);
  }
  else{
   segundos=(song1.duration).toFixed(0);
@@ -151,10 +151,10 @@ song2.addEventListener("loadedmetadata", function () {
  var segundos=0;
  if(song2.duration>60){
   minutos=(song2.duration/60).toFixed(0);
-  segundos=(song2.duration-minutos*60).toFixed(0);
+  segundos=(song2.duration-minutos*60);
  }
  else{
-  segundos=song2.duration.toFixed(0);
+  segundos=song2.duration;
  }
  $("#dura2").html(minutos+":"+segundos);
  $("#nombre2").html($("#tema1").html());
