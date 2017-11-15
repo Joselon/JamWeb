@@ -92,27 +92,17 @@
 </div>
 <p id="log"></p>
 <br>
+</main>
 <div style='display:none'>
 <%for(index in quiz.Comments){ var comentario='';var autoria='';%>
 	
 	<%if(quiz.Comments[index].publicado ||session.user){%>
 		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
-		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
-         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
+		else{ comentario=quiz.Comments[index].texto;autoria='Sin titulo '+(index+1)} %>
+         <div> <%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small></p>
             <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio loop preload="metadata"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p id="tema<%=index%>"><small><%=autoria%></small> </p>
-	    <%}else{%>
-                    <%=comentario%><small><%=autoria%></small></p>
-            <%}%>
-		<%if(session.user&&!quiz.Comments[index].publicado){%>
-			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
-				<button> Publicar <span class="glyphicon glyphicon-eye-open"></span></button></a>
-		<%}%>
-                <%if(session.user&&quiz.Comments[index].publicado){%>
-			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/hide">
-				<button> Ocultar <span class="glyphicon glyphicon-eye-close"></span></button></a>
-		<%}%>
-              
-		</p></div>
+                
+</div>
 	<%}%>
 <%}%>
 </div>
