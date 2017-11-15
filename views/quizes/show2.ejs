@@ -151,7 +151,7 @@ song2.addEventListener("loadedmetadata", function () {
   segundos=(song2.duration-minutos*60).toFixed(0);
  }
  else{
-  segundos=song2.duration;
+  segundos=song2.duration.toFixed(0);
  }
   if(segundos<10){$("#dura2").html(minutos+":0"+segundos);}
  else{$("#dura2").html(minutos+":"+segundos);}
