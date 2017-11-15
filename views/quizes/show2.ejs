@@ -194,11 +194,11 @@ song4.addEventListener("loadedmetadata", function () {
   if(segundos<10){$("#dura4").html(minutos+":0"+segundos);}
  else{$("#dura4").html(minutos+":"+segundos);}
  $("#nombre4").html($("#tema3").html());
- $("#AvisoCarga").hide(100);
+ $("#AvisoCarga").hide();
  }, false);
 
 song1.addEventListener("canplaythrough", function () {
- $("#AvisoCarga").hide(100);
+ $("#AvisoCarga").hide();
 },false);
 
 var leftSong = null;
@@ -435,7 +435,7 @@ function setSong(id) {
       break;
     case 4:
       loader = song4;
-      $('#'+channel2load+' .song').html($('#nombre4').html();
+      $('#'+channel2load+' .song').html($('#nombre4').html());
       toggleLoader(channel2load);
       break;
   }  
