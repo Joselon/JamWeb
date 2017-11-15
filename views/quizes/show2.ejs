@@ -123,10 +123,10 @@ var minutos=0;
 var segundos=0;
 
 if (audios.length>0){
-  song1.src = audios[0].src;
-  if(audios.length>1) song2.src = audios[1].src;
-  if(audios.length>2) song3.src = audios[2].src;
-  if(audios.length>3) song4.src = audios[3].src;
+  song1= audios[0];
+  if(audios.length>1) song2 = audios[1];
+  if(audios.length>2) song3 = audios[2];
+  if(audios.length>3) song4.src = audios[3];
   }
 
 song1.addEventListener("loadedmetadata", function () {
