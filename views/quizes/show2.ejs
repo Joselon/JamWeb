@@ -1,4 +1,7 @@
 <main>
+<div id="AvisoCarga" class="alert alert-warning" style="height:400px">
+<strong>¡Espera!</strong> Se está cargando la información de las pistas. <small>Si no desaparece este mensaje en unos segundos, recarga la página </small>
+</div>
   <div id="tutorial-container">
     <div id="tutorial">
       <iframe width="711" height="400" src="https://www.youtube.com/embed/16IpkM7ueWU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -69,19 +72,19 @@
           <td>Pista 2</td>
           <td id="nombre2">Autoria</td>
           <td id="dura2">:</td>
-          <td>124</td>
+          <td>-</td>
         </tr>
         <tr onclick="setSong(3)">
           <td>Pista 3</td>
           <td id="nombre3">Autoria</td>
           <td id="dura3">:</td>
-          <td>125</td>
+          <td>-</td>
         </tr>
         <tr onclick="setSong(4)">
           <td>Pista 4</td>
           <td id="nombre4">Autoria</td>
           <td id="dura4">:</td>
-          <td>125</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>
@@ -125,6 +128,8 @@ var song1 = new Audio('https://www.dropbox.com/s/c3imita5evqi4zi/Improvisacion%2
 var song2 = new Audio('https://www.dropbox.com/s/q2mfuvb61lvfiov/Improvisacion%232tenor.m4a?raw=1');
 var song3 = new Audio('https://www.dropbox.com/s/l8xivnydeu59n4w/AutumJacoPapa17%20-%201.m4a?raw=1');
 var song4 = new Audio('https://www.dropbox.com/s/an1h7wt3ptcgh1i/AutumJosePianoAcom%20-%2015%3A5%3A17%2013.06.mp3?raw=1');
+var minutos=0;
+var segundos=0;
 
 if (audios.length>0){
   song1 = audios[0];
@@ -134,59 +139,66 @@ if (audios.length>0){
   }
 
 song1.addEventListener("loadedmetadata", function () {
- var minutos=0;
- var segundos=0;
+ minutos=0;
+ segundos=0;
  if(song1.duration>60){
-  minutos=(song1.duration/60).toFixed(0);
-  segundos=(song1.duration-minutos*60);
+  minutos=Math.floor(song1.duration/60);
+  segundos=(song1.duration-minutos*60).toFixed(0);
  }
  else{
   segundos=(song1.duration).toFixed(0);
  }
- $("#dura1").html(minutos+":"+segundos);
+ if(segundos<10){$("#dura1").html(minutos+":0"+segundos);}
+ else{$("#dura1").html(minutos+":"+segundos);}
  $("#nombre1").html($("#tema0").html());
  }, false);
 song2.addEventListener("loadedmetadata", function () {
- var minutos=0;
- var segundos=0;
+ minutos=0;
+ segundos=0;
  if(song2.duration>60){
-  minutos=(song2.duration/60).toFixed(0);
+  minutos=Math.floor(song2.duration/60);
   segundos=(song2.duration-minutos*60);
  }
  else{
   segundos=song2.duration;
  }
- $("#dura2").html(minutos+":"+segundos);
+  if(segundos<10){$("#dura2").html(minutos+":0"+segundos);}
+ else{$("#dura2").html(minutos+":"+segundos);}
  $("#nombre2").html($("#tema1").html());
  }, false);
 
 song3.addEventListener("loadedmetadata", function () {
-   var minutos=0;
- var segundos=0;
+ minutos=0;
+ segundos=0;
  if(song3.duration>60){
-  minutos=(song3.duration/60).toFixed(0);
+  minutos=Math.floor(song3.duration/60);
   segundos=(song3.duration-minutos*60).toFixed(0);
  }
  else{
   segundos=song3.duration.toFixed(0);
  }
- $("#dura3").html(minutos+":"+segundos);
+  if(segundos<10){$("#dura3").html(minutos+":0"+segundos);}
+ else{$("#dura3").html(minutos+":"+segundos);}
  $("#nombre3").html($("#tema2").html());
  }, false);
 song4.addEventListener("loadedmetadata", function () {
-   var minutos=0;
- var segundos=0;
+ minutos=0;
+ segundos=0;
  if(song4.duration>60){
-  minutos=(song4.duration/60).toFixed(0);
+  minutos=Math.floor(song4.duration/60);
   segundos=(song4.duration-minutos*60).toFixed(0);
  }
  else{
   segundos=song4.duration.toFixed(0);
  }
- $("#dura4").html(minutos+":"+segundos);
+  if(segundos<10){$("#dura4").html(minutos+":0"+segundos);}
+ else{$("#dura4").html(minutos+":"+segundos);}
  $("#nombre4").html($("#tema3").html());
  }, false);
 
+song1.addEventListener("canplaythrough", function () {
+ $("#AvisoCarga").hide();
+}
 
 var leftSong = null;
 var rightSong = null;
