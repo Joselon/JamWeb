@@ -61,26 +61,26 @@
       <tbody>
         <tr onclick="setSong(1)">
           <td>Pista 1</td>
-          <td>Autoria</td>
-          <td>—:—</td>
+          <td id="nombre1">Autoria</td>
+          <td id="dura1">—:—</td>
           <td>126</td>
         </tr>
         <tr onclick="setSong(2)">
           <td>Pista 2</td>
-          <td>Autoria</td>
-          <td>—:—</td>
+          <td id="nombre2">Autoria</td>
+          <td id="dura2">—:—</td>
           <td>124</td>
         </tr>
         <tr onclick="setSong(3)">
           <td>Pista 3</td>
-          <td>Autoria</td>
-          <td>—:—</td>
+          <td id="nombre3">Autoria</td>
+          <td id="dura3">—:—</td>
           <td>125</td>
         </tr>
         <tr onclick="setSong(4)">
           <td>Pista 4</td>
-          <td>Autoria</td>
-          <td>—:—</td>
+          <td id="nombre4">Autoria</td>
+          <td id="dura4">—:—</td>
           <td>125</td>
         </tr>
       </tbody>
@@ -95,8 +95,8 @@
 	<%if(quiz.Comments[index].publicado ||session.user){%>
 		<%if(quiz.Comments[index].texto.indexOf('(')!=-1){comentario=quiz.Comments[index].texto.substr(0,quiz.Comments[index].texto.indexOf('(')); autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);}
 		else{ comentario=quiz.Comments[index].texto;autoria=''} %>
-         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%" loop><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
-            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%" loop><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p><small><%=autoria%></small> </p>
+         <div class='container comenteiner'><p style="border: white 8px outset">-<%if(comentario.substr(0,6)=='audio4'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%" loop preload="auto"><source src="<%=$enlace%>" type="audio/mp4" >Your browser does not support the audio tag.</audio><p id="tema<%=index+1%>"><small><%=autoria%></small> </p>
+            <%}else if(comentario.substr(0,6)=='audio3'){var $enlace=comentario.substring(7)%> <audio controls style="width:100%" loop preload="auto"><source src="<%=$enlace%>" type="audio/mpeg" >Your browser does not support the audio tag.</audio><p id="tema<%=index+1%>"><small><%=autoria%></small> </p>
 	    <%}else{%>
                     <%=comentario%><small><%=autoria%></small></p>
             <%}%>
@@ -132,19 +132,58 @@ if (audios.length>0){
   if(audios.length>2) song3 = audios[2];
   if(audios.length>3) song4 = audios[3];
   }
-/*song1.addEventListener("canplaythrough", function () {
-   alert('Pista 1 cargada!');
+
+song1.addEventListener("loadedmetadata", function () {
+ var minutos=0;
+ var segundos=0;
+ if(song1.duration>60){
+  minutos=(song1.duration/60).toFixed(0);
+  segundos=(song1.duration-minutos*60).toFixed(0);
+ }
+ else{
+  segundos=song1.duration.toFixed(0);
+ }
+ $("#dura1").html(minutos+":"+segundos);
+ $("#nombre1").html($("#tema1").html());
  }, false);
-song2.addEventListener("canplaythrough", function () {
-   alert('Pista 2 cargada!');
+song2.addEventListener("loadedmetadata", function () {
+ var minutos=0;
+ var segundos=0;
+ if(song2.duration>60){
+  minutos=(song2.duration/60).toFixed(0);
+  segundos=(song2.duration-minutos*60).toFixed(0);
+ }
+ else{
+  segundos=song2.duration.toFixed(0);
+ }
+ $("#dura2").html(minutos+":"+segundos);
+ $("#nombre2").html($("#tema2").html());
  }, false);
 
-song3.addEventListener("canplaythrough", function () {
-   alert('Pista 3 cargada!');
+song3.addEventListener("loadedmetadata", function () {
+   var minutos=0;
+ var segundos=0;
+ if(song3.duration>60){
+  minutos=(song3.duration/60).toFixed(0);
+  segundos=(song3.duration-minutos*60).toFixed(0);
+ }
+ else{
+  segundos=song3.duration.toFixed(0);
+ }
+ $("#dura3").html(minutos+":"+segundos);
  }, false);
-song4.addEventListener("canplaythrough", function () {
-   alert('Pista 4 cargada!');
- }, false);*/
+song4.addEventListener("loadedmetadata", function () {
+   var minutos=0;
+ var segundos=0;
+ if(song4.duration>60){
+  minutos=(song4.duration/60).toFixed(0);
+  segundos=(song4.duration-minutos*60).toFixed(0);
+ }
+ else{
+  segundos=song4.duration.toFixed(0);
+ }
+ $("#dura4").html(minutos+":"+segundos);
+ }, false);
 
 
 var leftSong = null;
