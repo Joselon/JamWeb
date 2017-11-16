@@ -19,7 +19,7 @@
     <div class="play"></div>
     <div class="less"></div>
     <div class="more"></div>
-    <div class="jog paused">
+    <div class="jog paused" id="touchsurface">
       <div class="wave"></div>
     </div>
     <div class="volume-container"><div class="volume"></div></div>
@@ -37,7 +37,7 @@
     <div class="play"></div>
     <div class="less"></div>
     <div class="more"></div>
-    <div class="jog paused"></div>
+    <div class="jog paused" id="touchsurface"></div>
     <div class="volume-container"><div class="volume"></div></div>
     <div class="info">
       <div class="song"></div>
@@ -370,39 +370,8 @@ $('#tutorial-button>div').click(function() {
 $('#tutorial-container>p').click(function() {
   $('#tutorial-container').hide();
 });
-//Micro adelantos y retrasos
-$("#left .jog").on("swipeleft",function(){
-   if (leftSong != null) {    
-  	leftSong.currentTime-=timeFactor;
-  }
-  else {
-    requestSong();
-  }
-});
-$("#left .jog").on("swiperight",function(){
-  if (leftSong != null) {    
-  	leftSong.currentTime+=timeFactor;
-  }
-  else {
-    requestSong();
-  }
-}) ;
-$("#right .jog").on("swipeleft",function(){
-   if (rightSong != null) {    
-  	rightSong.currentTime-=timeFactor;
-  }
-  else {
-    requestSong();
-  }
-});
-$("#right .jog").on("swiperight",function(){
-  if (rightSong != null) {    
-  	rightSong.currentTime+=timeFactor;
-  }
-  else {
-    requestSong();
-  }
-});
+
+
 //FUNCIONES
 function setSong(id) {
   $('#'+channel2load+' .info-time').html('00:00');
@@ -600,5 +569,129 @@ function crossFade() {
   	rightSong.volume = currentVolRight - (modVolumeRight*currentVolRight/100).toFixed(2);
   }
 }
+//FUNCIONES PARA SWIPE M
+window.addEventListener('load', function(){
 
+	var touchsurface = document.getElementById('touchsurface'),
+			detecttouch = !!('ontouchstart' in window) || !!('ontouchstart' in document.documentElement) || !!window.ontouchstart || !!window.Touch || !!window.onmsgesturechange || (window.DocumentTouch && window.document instanceof window.DocumentTouch),
+			startX,
+			startY,
+			dist,
+			threshold = 150,
+			allowedTime = 200,
+			elapsedTime,
+			startTime,
+			ismousedown = false
+
+	function handleswipe(isrightswipe){
+		if (isrightswipe)
+		 if(touchsurface.hasClass('#left)){
+		 	if (leftSong != null) {    
+  				leftSong.currentTime+=timeFactor;
+  			}
+  			else {
+    				requestSong();
+  			}			
+		}
+		 else{
+		 	if (rightSong != null) {    
+  				rightSong.currentTime+=timeFactor;
+	  		}
+  			else {
+    				requestSong();
+  			}
+		}	
+		else{
+			if(touchsurface.hasClass('#left)){
+			 if (leftSong != null) {    
+  				leftSong.currentTime-=timeFactor;
+ 			 }
+ 			 else {
+   				 requestSong();
+ 			 }
+			}
+			else{
+			 if (rightSong != null) {    
+  				rightSong.currentTime-=timeFactor;
+  			 }
+  			 else {
+    				requestSong();
+  			 }
+			}
+		}
+	}
+
+	touchsurface.addEventListener('touchstart', function(e){
+		touchsurface.innerHTML = ''
+		var touchobj = e.changedTouches[0]
+		dist = 0
+		startX = touchobj.pageX
+		startY = touchobj.pageY
+		startTime = new Date().getTime() // record time when finger first makes contact with surface
+		e.preventDefault()
+	
+	}, false)
+
+	touchsurface.addEventListener('touchmove', function(e){
+		e.preventDefault() // prevent scrolling when inside DIV
+	}, false)
+
+	touchsurface.addEventListener('touchend', function(e){
+		var touchobj = e.changedTouches[0]
+		dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
+		elapsedTime = new Date().getTime() - startTime // get time elapsed
+		// check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+		var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100)
+		handleswipe(swiperightBol)
+		e.preventDefault()
+	}, false)
+	
+	if (!detecttouch){
+		document.body.addEventListener('mousedown', function(e){
+			if ( isContained(touchsurface, e) ){
+				touchsurface.innerHTML = ''
+				var touchobj = e
+				dist = 0
+				startX = touchobj.pageX
+				startY = touchobj.pageY
+				startTime = new Date().getTime() // record time when finger first makes contact with surface
+				ismousedown = true
+				e.preventDefault()
+			}
+		}, false)
+		}
+}, false)
+/*MICRO ADELANTOS Y RETRASOS solo con jquery mobile que detecta eventos SWIPE
+$("#left .jog").on("swipeleft",function(){
+   if (leftSong != null) {    
+  	leftSong.currentTime-=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+});
+$("#left .jog").on("swiperight",function(){
+  if (leftSong != null) {    
+  	leftSong.currentTime+=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+}) ;
+$("#right .jog").on("swipeleft",function(){
+   if (rightSong != null) {    
+  	rightSong.currentTime-=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+});
+$("#right .jog").on("swiperight",function(){
+  if (rightSong != null) {    
+  	rightSong.currentTime+=timeFactor;
+  }
+  else {
+    requestSong();
+  }
+}); */
  </script>
