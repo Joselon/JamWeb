@@ -37,7 +37,7 @@
     <div class="play"></div>
     <div class="less"></div>
     <div class="more"></div>
-    <div class="jog paused" id="touchsurface"></div>
+    <div class="jog paused" id="touchsurface2"></div>
     <div class="volume-container"><div class="volume"></div></div>
     <div class="info">
       <div class="song"></div>
@@ -585,7 +585,7 @@ window.addEventListener('load', function(){
 
 	function handleswipe(isrightswipe){
 		if (isrightswipe)
-		 if(touchsurface.parent().hasClass('#left')){
+		 if(touchsurface.parentElement.hasClass('#left')){
 		 	if (leftSong != null) {    
   				leftSong.currentTime+=timeFactor;
   			}
@@ -602,7 +602,7 @@ window.addEventListener('load', function(){
   			}
 		}	
 		else{
-			if(touchsurface.parent().hasClass('#left')){
+			if(touchsurface.parentElement.hasClass('#left')){
 			 if (leftSong != null) {    
   				leftSong.currentTime-=timeFactor;
  			 }
