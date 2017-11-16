@@ -683,7 +683,7 @@ window.addEventListener('load', function(){
 			startTime,
 			ismousedown = false
 
-	function handleswipe(isrightswipe){
+	function handleswipeR(isrightswipe){
 		if (isrightswipe){
 		 if (rightSong != null) {    
   				rightSong.currentTime+=timeFactor;
@@ -724,7 +724,7 @@ window.addEventListener('load', function(){
 		elapsedTime = new Date().getTime() - startTime // get time elapsed
 		// check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
 		var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100)
-		handleswipe(swiperightBol)
+		handleswipeR(swiperightBol)
 		e.preventDefault()
 	}, false)
 	
