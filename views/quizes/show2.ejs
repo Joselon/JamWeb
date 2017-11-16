@@ -112,7 +112,7 @@
 
 /*
 var pistas= new Array();
-<%var npistas=0;
+@@-var npistas=0;
 for(index in quiz.Comments){
   var comentario='';
   var autoria='';
@@ -123,20 +123,20 @@ for(index in quiz.Comments){
 	     autoria=quiz.Comments[index].texto.substr(quiz.Comments[index].texto.indexOf('('),quiz.Comments[index].texto.length);
 	     if(comentario.substr(0,6)=='audio4'){
 			$enlace=comentario.substring(7); //type="audio/mp4"
-			%>pistas[<%=npistas%>][0]=<%=enlace%>;
-			  pistas[<%=npistas%>][1]=<%=autoria%>;
-			  pistas[<%=npistas%>][2]='mp4';
-			<%npistas=npistas+1;
+			-@@pistas[@@-=npistas-@@][0]= @@- =enlace -@@;
+			  pistas[@@-=npistas-@@][1]= @@- =autoria-@@;
+			  pistas[@@- =npistas-@@][2]='mp4';
+			@@- npistas=npistas+1;
 	     }else if(comentario.substr(0,6)=='audio3'){
 			$enlace=comentario.substring(7); //type="audio/mpeg"
-			pistas[<%=npistas%>][0]=<%=enlace%>;
-			  pistas[<%=npistas%>][1]=<%=autoria%>;
-			  pistas[<%=npistas%>][2]='mp3';
-			<%npistas=npistas+1;
+			pistas[@@- =npistas-@@][0]= @@- =enlace-@@;
+			  pistas[@@- =npistas-@@][1]=@@-=autoria-@@;
+			  pistas[@@- =npistas -@@][2]='mp3';
+			@@- npistas=npistas+1;
 		 }
 	   }	   
     }	
- }%>
+ }-@@
 */
 var audios=document.getElementsByTagName("audio");
 
