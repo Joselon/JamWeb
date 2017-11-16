@@ -28,7 +28,7 @@ function editaContenido(idSala,idContenido,comentarioEditar){
  };
  </script>
 <button type="button" onclick="javascript:history.back(1);"><span class="glyphicon glyphicon-hand-left"></span> Volver</button>
-<a style= 'color:white' href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
+<a style= 'color:black' href="/quizes"><button type="button"><span class="glyphicon glyphicon-home"></span> Ir a Salas</button></a>
 <div style="border-style:solid;border-color:<%=quiz.tema %>;background: <%=quiz.tema %>;background-image:url('/images/graba.png');background-repeat:no-repeat;">
 <h4 id="tema" style='color:<%=quiz.tema %>;'></h4> 
 <%if(quiz.tema!='GhostWhite'){ %>
@@ -49,17 +49,17 @@ function editaContenido(idSala,idContenido,comentarioEditar){
 		</form>
 	    <%}%>
 	    <br>
- <a class="left carousel-control" href="/quizes/<%=quiz.id-1%>" role="button" data-slide="prev">
+ <a class="left carousel-control" href="/quizes/<%=quiz.id-1%>" role="button" data-slide="prev" style="top: 50px;">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     <span class="sr-only">Siguiente</span>
                 </a>
-                <a class="right carousel-control" href="/quizes/<%=quiz.id+1%>" role="button" data-slide="next">
+                <a class="right carousel-control" href="/quizes/<%=quiz.id+1%>" role="button" data-slide="next" style="top: 50px;">
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
                 </a>
 </div>
 <p><strong>Contenidos:</strong></p>
-<p><a style= 'color:white' href="/quizes/<%=quiz.id%>/comments/new"><button>Agregar contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
+<p><a style= 'color:black' href="/quizes/<%=quiz.id%>/comments/new"><button>Agregar contenido...<span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-paperclip"></span></button></a></p>
 <p>
 <form>
 <button type="button" onclick="playAll()" >Escuchar Todo <span class="glyphicon glyphicon-music"></span></button>
