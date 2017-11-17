@@ -3,6 +3,7 @@
 <p><strong>¡Espera!</strong> Se está cargando la información de las pistas.<small>Si no desaparece este mensaje en unos segundos, recarga la página </small></p>
 </div>
 <main>
+<div id="mesaCompleta">
   <div id="tutorial-container">
     <div id="tutorial">
       <iframe width="711" height="400" src="https://www.youtube.com/embed/16IpkM7ueWU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -93,6 +94,7 @@
 </div>
 <p id="log"></p>
 <br>
+</div>
 </main>
 <div style='display:none'>
 <%var npistas=0;for(index in quiz.Comments){ var comentario='';var autoria='';%>
@@ -220,7 +222,7 @@ song4.addEventListener("loadedmetadata", function () {
 
 song1.addEventListener("canplaythrough", function () {
  $("#AvisoCarga").hide();
- document.getElementsByTagName("main").focus();
+ document.getElementById("mesaCompleta").focus();
 },false);
 
 var leftSong = null;
