@@ -286,6 +286,9 @@ $('#left .load').click(function() {
   else {
     askToPause();
   }
+  $('body, html').animate({
+			scrollTop: '0px'
+		}, 300);
 });
 
 $('#right .load').click(function() {
@@ -295,6 +298,9 @@ $('#right .load').click(function() {
   else {
     askToPause();
   }
+$('body, html').animate({
+			scrollTop: '0px'
+		}, 300);
 });
 
 $("#left .tempo").dblclick(function() {
