@@ -1,6 +1,6 @@
 main {
   background-color:#000;
-  overflow:hidden;
+  /*overflow:hidden;*/
 }
 
 #tutorial-container {
@@ -482,7 +482,7 @@ iframe {
 	left:0;
 	background-image:url(/images/rotate.png);
 	background-repeat:no-repeat;
-	background-position:center center;
+	/*background-position:center center;*/
 }
     @media only screen and (orientation:portrait){        
         #warning-message { display:block; }
