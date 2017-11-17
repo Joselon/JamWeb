@@ -479,6 +479,7 @@ iframe {
 	position: fixed;
 	background-color: #CEE9B1;
 	top: 0 !important;
+	left:0;
 	background-image:url(/images/rotate.png);
 	background-repeat:no-repeat;
 	background-position:center center;
