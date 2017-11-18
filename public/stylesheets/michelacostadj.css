@@ -8,13 +8,13 @@ main {
   float:left;
   position:relative;
   background-color:#000;
-  width:900px;
+  width:835px;
   height:499px;
   z-index:99999;
 	background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
-	opacity:0.6;
+	opacity:0.8;
 	background-image: url(/images/Bocetos7.png);
 }
 
@@ -74,7 +74,7 @@ main {
 #credits {  
   position:absolute;
   top:510px;
-  left:352px;
+  left:65px;
   margin:auto;  
   font-family: 'Kristi', sans-serif;
 }
