@@ -133,7 +133,7 @@ var audios=document.getElementsByTagName("audio");
 
 function playAll(){
  
- if (audios!=null){
+ if (audios[0]!=null){
   for (var i = 0; i < audios.length; i++)
    audios[i].play();
   }
@@ -142,7 +142,7 @@ alert("No hay contenido audio");
 }
  };
 function stopAll(){
- if (audios!=null){
+ if (audios[0]!=null){
   for (var i = 0; i < audios.length; i++)
    audios[i].pause();
   }
