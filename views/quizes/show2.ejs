@@ -476,6 +476,7 @@ function requestSong() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
+alert('¡No has cargado una canción!');
 }
 
 function askToPause() {
@@ -487,6 +488,7 @@ function askToPause() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
+alert('¡Tienes que parar la reproducción!');
 }
 
 function dislike() {
@@ -498,6 +500,7 @@ function dislike() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
+alert('No nos gustan los DJs que usan el SYNC');
 }
 
 function toggleLoader(deck) {
