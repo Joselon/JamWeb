@@ -11,6 +11,11 @@ main {
   width:900px;
   height:499px;
   z-index:99999;
+	background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+	opacity:0.6;
+	background-image: url(/images/Bocetos7.png);
 }
 
 #tutorial-container p {
