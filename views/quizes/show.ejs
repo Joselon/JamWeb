@@ -134,12 +134,17 @@ var audios=document.getElementsByTagName("audio");
 function playAll(){
  
  if (audios[0]!=null){
-  for (var i = 0; i < audios.length; i++)
-   audios[i].play();
+  for (var i = 0; i < audios.length; i++){
+   audios[i].oncanplay = function() {
+     alert("Cargada pista: "+(i+1));
+     audios[i].play();
+     };
+   }  
   }
 else{
 alert("No hay contenido audio");
 }
+
  };
 function stopAll(){
  if (audios[0]!=null){
