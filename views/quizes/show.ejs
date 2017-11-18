@@ -132,11 +132,11 @@ Tema.innerHTML=nombretema;
 var audios=document.getElementsByTagName("audio");
 
 function playAll(){
- 
+
  if (audios[0]!=null){
+  alert("Cargando pistas");
   for (var i = 0; i < audios.length; i++){
    audios[i].oncanplay = function() {
-     alert("Cargada pista: "+(i+1));
      audios[i].play();
      };
    }  
