@@ -468,6 +468,7 @@ function updateRightTime() {
 }
 
 function requestSong() {
+alert('¡No has cargado una canción! Carga una canción en este canal pulsando el botón "LOAD"');
   title = '¡No has cargado una canción!';
   options = {
     body: 'Carga una canción en este canal pulsando el botón "LOAD"',
@@ -476,10 +477,11 @@ function requestSong() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
-alert('¡No has cargado una canción!');
+
 }
 
 function askToPause() {
+alert('¡Tienes que parar la reproducción! Para la reproducción antes de cargar otro tema');
   title = '¡Tienes que parar la reproducción!';
   options = {
     body: 'Para la reproducción antes de cargar otro tema',
@@ -488,10 +490,11 @@ function askToPause() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
-alert('¡Tienes que parar la reproducción!');
+
 }
 
 function dislike() {
+alert('¡Desprecio infinito! No nos gustan los DJs que usan el SYNC');
   title = '¡Desprecio infinito!';
   options = {
     body: 'No nos gustan los DJs que usan el SYNC',
@@ -500,7 +503,7 @@ function dislike() {
   Notification.requestPermission(function(status) {
     new Notification(title, options);
   });
-alert('No nos gustan los DJs que usan el SYNC');
+
 }
 
 function toggleLoader(deck) {
