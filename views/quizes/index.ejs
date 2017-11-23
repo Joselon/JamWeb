@@ -29,7 +29,7 @@
 <table class="table table-hover" id="tabpreg">
 
 <% var i; for (i=0;i<quizes.length;i++) { %>
-	<tr><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-indent-left"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border: white 8px outset;background-color:white;"><%= quizes[i].pregunta %></a>
+	<tr><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-indent-left"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border: white 8px outset;background-color:white;background-image:url('https://www.dropbox.com/s/8ysier7zc0k1hsl/526875-emsona-locales-de-ensayo-banner.jpg?raw=1')"><%= quizes[i].pregunta %></a>
 	    </td>
 	    <%if (session.user) {%>
 	      <td id="botoneditar"><a href="quizes/<%= quizes[i].id %>/edit"><button><span class="glyphicon glyphicon-cog"></span></button></a></td>
