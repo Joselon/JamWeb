@@ -29,7 +29,7 @@
 <table class="table table-hover" id="tabpreg">
 
 <% var i; for (i=0;i<quizes.length;i++) { %>
-	<tr style="background-image:url('/images/526875-emsona-locales-de-ensayo-banner.jpg'); background-repeat:no-repeat; background-size:100% auto;"><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-hand-right"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border-style:solid;border-color:<%=quizes[i].tema %>;background-image:url('/images/graba.png');background-repeat:no-repeat;background-color: #F5F5DC; opacity:0.8;"><strong><%= quizes[i].pregunta %></strong></a>
+	<tr style="background-image:url('/images/526875-emsona-locales-de-ensayo-banner.jpg'); background-repeat:no-repeat; background-size:100% auto;"><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-hand-right"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border-style:solid;border-color:<%=quizes[i].tema %>;background-repeat:no-repeat;background-color: #F5F5DC; opacity:0.8;"><strong><%= quizes[i].pregunta %></strong></a>
 	    </td>
 	    <%if (session.user) {%>
 	      <td id="botoneditar"><a href="quizes/<%= quizes[i].id %>/edit"><button><span class="glyphicon glyphicon-cog"></span></button></a></td>
