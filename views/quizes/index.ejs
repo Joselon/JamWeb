@@ -29,7 +29,7 @@
 <table class="table table-hover" id="tabpreg">
 
 <% var i; for (i=0;i<quizes.length;i++) { %>
-	<tr style="background-image:url('/images/526875-emsona-locales-de-ensayo-banner.jpg'); background-repeat:no-repeat; background-size:100% auto;"><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-indent-left"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border: white 8px outset;background-color:white;"><%= quizes[i].pregunta %></a>
+	<tr style="background-image:url('/images/526875-emsona-locales-de-ensayo-banner.jpg'); background-repeat:no-repeat; background-size:100% auto;"><td align="left" id="preg"><span class="badge" id="Tema" style="color:<%= quizes[i].tema %>;"><span class="glyphicon glyphicon-hand-right"></span></span><a  href="quizes/<%= quizes[i].id %>" style="border-style:solid;border-color:<%=quiz.tema %>;background: <%=quiz.tema %>;background-image:url('/images/graba.png');background-repeat:no-repeat; background-size:100% auto;"><%= quizes[i].pregunta %></a>
 	    </td>
 	    <%if (session.user) {%>
 	      <td id="botoneditar"><a href="quizes/<%= quizes[i].id %>/edit"><button><span class="glyphicon glyphicon-cog"></span></button></a></td>
