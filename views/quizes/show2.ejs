@@ -1,10 +1,11 @@
 <div id="warning-message"></div>
- <a href="/quizes/<%=quiz.id-1%>/show2" role="button" style="top: 50px;">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                </a>
-                <a href="/quizes/<%=quiz.id+1%>/show2" role="button" style="top: 50px;">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                </a>
+ <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"> <a href="/quizes/<%=quiz.id-1%>/show2" role="button" style="top: 50px;"> Anterior</a>
+                    </span>
+               
+                <label for="nombreSala">Sala:</label>
+ <h3 style='background-color:<%=quiz.tema %>;' id="nombreSala"><%=quiz.pregunta%></h3>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"> <a href="/quizes/<%=quiz.id+1%>/show2" role="button" style="top: 50px;"> Siguiente</a> </span>
+               
 <div id="mesaCompleta" class= "container"  style="width:100%">
 <main>
   <div id="tutorial-container">
