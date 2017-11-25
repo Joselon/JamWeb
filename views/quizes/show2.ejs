@@ -1,8 +1,8 @@
 <div id="warning-message"></div>
- <span class="glyphicon glyphicon-chevron-left"> <a href="/quizes/<%=quiz.id-1%>/show2" style="top: 50px;">Anterior</a>
-                    </span>
- <h3 style='background-color:<%=quiz.tema %>;' id="nombreSala"><%=quiz.pregunta%></h3>
-                    <span class="glyphicon glyphicon-chevron-right"> <a href="/quizes/<%=quiz.id+1%>/show2" style="top: 50px;">Siguiente</a></span>
+ <a class="left carousel-control" href="/quizes/<%=quiz.id-1%>/show2" style="top: 50px;"> <span class="glyphicon glyphicon-chevron-left"> </span>Anterior</a>
+                   
+ <a style='background-color:<%=quiz.tema %>;' id="nombreSala"><%=quiz.pregunta%></h3>
+                    <a class="right carousel-control" href="/quizes/<%=quiz.id+1%>/show2" style="top: 50px;"><span class="glyphicon glyphicon-chevron-right"></span> Siguiente</a>
 <div id="mesaCompleta" class= "container"  style="width:100%">
 <main>
   <div id="tutorial-container">
