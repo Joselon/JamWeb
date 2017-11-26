@@ -138,22 +138,6 @@ if (pistas.length>0){
   song1.src= pistas[0][0];
   song1.loop=true;
   song1.preload="auto";
-  if(pistas.length>1) {
-	  song2.src = pistas[1][0];
-	  song2.loop=true;
-	  song2.preload="auto";
-  }
-  if(pistas.length>2){
-	  song3.src = pistas[2][0];
-	  song3.loop=true;
-	  song3.preload="auto";
-  } 
-  if(pistas.length>3){
-	  song4.src = pistas[3][0];
-	  song4.loop=true;
-	  song4.preload="auto";
-  } 
-  }
 
 song1.addEventListener("loadedmetadata", function () {
  minutos=0;
@@ -169,6 +153,10 @@ song1.addEventListener("loadedmetadata", function () {
  else{$("#dura1").html(minutos+":"+segundos);}
  $("#nombre1").html(pistas[0][1]);
  }, false);
+  if(pistas.length>1) {
+	  song2.src = pistas[1][0];
+	  song2.loop=true;
+	  song2.preload="auto";
 song2.addEventListener("loadedmetadata", function () {
  minutos=0;
  segundos=0;
@@ -183,7 +171,11 @@ song2.addEventListener("loadedmetadata", function () {
  else{$("#dura2").html(minutos+":"+segundos);}
  $("#nombre2").html(pistas[1][1]);
  }, false);
-
+  }
+  if(pistas.length>2){
+	  song3.src = pistas[2][0];
+	  song3.loop=true;
+	  song3.preload="auto";
 song3.addEventListener("loadedmetadata", function () {
  minutos=0;
  segundos=0;
@@ -198,6 +190,11 @@ song3.addEventListener("loadedmetadata", function () {
  else{$("#dura3").html(minutos+":"+segundos);}
  $("#nombre3").html(pistas[2][1]);
  }, false);
+  } 
+  if(pistas.length>3){
+	  song4.src = pistas[3][0];
+	  song4.loop=true;
+	  song4.preload="auto";
 song4.addEventListener("loadedmetadata", function () {
  minutos=0;
  segundos=0;
@@ -213,6 +210,13 @@ song4.addEventListener("loadedmetadata", function () {
  $("#nombre4").html(pistas[3][1]);
 // $("#AvisoCarga").hide();
  }, false);
+  } 
+  }
+
+
+
+
+
  
 document.getElementById("mesaCompleta").focus();
 
