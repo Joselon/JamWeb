@@ -1,7 +1,7 @@
 <div id="warning-message"></div>
  <a class="left carousel-control" href="/quizes/<%=quiz.id-1%>/show2" style="top: 50px;"> <span class="glyphicon glyphicon-chevron-left"> </span>Anterior</a>
                    
- <a href='/quizes/<%=quiz.id%>/show' style='background-color:<%=quiz.tema %>;' id="nombreSala"><%=quiz.pregunta%></a>
+ <a href='/quizes/<%=quiz.id%>' style='background-color:<%=quiz.tema %>;' id="nombreSala"><%=quiz.pregunta%></a>
                     <a class="right carousel-control" href="/quizes/<%=quiz.id+1%>/show2" style="top: 50px;"><span class="glyphicon glyphicon-chevron-right"></span> Siguiente</a>
 <div id="mesaCompleta" class= "container"  style="width:100%">
 <main>
@@ -97,7 +97,7 @@
 <br>
 </main>
 </div>
- <a href='/quizes/<%=quiz.id%>/show' style='background-color:<%=quiz.tema %>;' id="nombreSala">Volver a sala: <%=quiz.pregunta%></a>
+ <a href='/quizes/<%=quiz.id%>' style='background-color:<%=quiz.tema %>;' id="nombreSala">Volver a sala: <%=quiz.pregunta%></a>
 <script>
 var pistas= new Array();
 <%var npistas=0;
