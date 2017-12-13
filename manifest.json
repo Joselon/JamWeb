@@ -1,9 +1,9 @@
 {
   "short_name": "JamWeb2app",
-  "name": "Jam Web App",
+  "name": "JamWebApp",
   "icons": [
     {
-      "src":"images/graba.png",
+      "src":"/images/graba.png",
       "sizes": "272x226",
       "type": "img/png"
     }
