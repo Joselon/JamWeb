@@ -9,7 +9,7 @@ var statsController=require('../controllers/stats_controller');
 /* GET home page. */
 router.get('/', function(req, res) {
  // console.log("ESTOY EN INDEX");
-  res.render('index', { title: 'JAMWeb',errors:[] });
+  res.render('index', { title: 'JAMWeb2',errors:[] });
 });
 
 //GET pagina de autor
