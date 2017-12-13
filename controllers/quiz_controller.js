@@ -126,11 +126,7 @@ exports.edit=function(req,res){
 	var quiz=req.quiz; //autoload de instancia de quiz
 	res.render('quizes/edit', {quiz:quiz, errors:[]});
 };
-// GET /quizes/:id/edit
-exports.ahorcado=function(req,res){
-	var quiz=req.quiz; //autoload de instancia de quiz
-	res.render('quizes/ahorcado', {quiz:quiz, errors:[]});
-};
+
 
 //PUT /quizes/:id
 exports.update=function(req,res){
