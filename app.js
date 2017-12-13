@@ -23,7 +23,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev')); //Desarrollo
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(cookieParser('JamWeb2'));
+app.use(cookieParser('Quiz jnavarro'));
 app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public'))); 
