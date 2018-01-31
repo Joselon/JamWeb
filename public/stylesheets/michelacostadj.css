@@ -341,8 +341,8 @@ input[type=range] {
   position:absolute;  
   left:0;
   width:100%;
-  height:3px;
-  bottom:0;
+  height:20px;
+  bottom:35px;
 }
 
 /* Estilos para el input range copiados de css-tricks.com/styling-cross-browser-compatible-range-inputs-css */
@@ -415,7 +415,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   color:#3FAEFD;
   text-transform:uppercase;
   white-space:nowrap;
-  padding:10px;
+  padding:20px;
 }
 
 #crossfade {
