@@ -10,7 +10,7 @@
     "node" : ">=16.0.0"
   },
   "devDependencies": {
-    "sqlite3": "^3.0.9"
+    "sqlite3": ">=3.0.9"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
