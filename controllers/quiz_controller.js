@@ -8,7 +8,7 @@ exports.load=function(req, res, next, quizId){
 		where: {id: Number(quizId)},
 		include: [{model:models.Comment}],
 		//order:'"Comments"."createdAt" ASC'
-		order:['createdAt' , 'ASC']
+		order:[models.Comment,'createdAt','ASC']
 	}).then(
 	 function(quiz){
 	  if(quiz){
