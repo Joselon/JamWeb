@@ -112,14 +112,14 @@
 	</nav>
 			
 		<section class='container-fluid text-center' id='s1' style='opacity: 1;'>
-			<%= if(errors.length){ %>
+			<% if(typeof errors !== 'undefined' && errors.length){ %>
 			<span id='ErrorMsgs'>
 			 Corregir errores:<br/>
-			 <%= for (var i in errors) { %>
+			 <% for (var i in errors) { %>
 				<span><%= errors[i].message %></span><br/>
-			<%= } %>
+			<% } %>
 			</span>
-			<%= } %>
+			<% } %>
 			<div class="well"style="background-color:black"><%= body %></div>
 		</section>
 		
