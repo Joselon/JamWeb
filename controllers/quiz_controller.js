@@ -7,8 +7,8 @@ exports.load=function(req, res, next, quizId){
 	models.Quiz.findOne({
 		where: {id: Number(quizId)},
 		include: [{model:models.Comment}],
-		//order:'"Comments"."createdAt" ASC'
-		order:[models.Comment,'createdAt','ASC']
+		//order:'"Comments"."createdAt" ASC' models.Comment,'Comments',
+		order:[['createdAt','ASC']]
 	}).then(
 	 function(quiz){
 	  if(quiz){
