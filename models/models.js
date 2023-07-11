@@ -15,7 +15,7 @@ var host = (url[4] || null);*/
 
 //CLEARDB_DATABASE_URL = mysql://user:pass@host/database?reconnect=true
 var url = process.env.CLEARDB_DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\/(.*)\?(.*)/);
-var DB_name = (url[6] || null);
+var DB_name = (url[5] || null);
 var user = (url[2] || null);
 var pwd = (url[3] || null);
 var protocol = (url[1] || null);
