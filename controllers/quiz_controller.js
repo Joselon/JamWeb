@@ -3,7 +3,8 @@ var urlBusqueda= '/quizes';
 // Autoload -factoriza el codigo si ruta incluye :quizId
 exports.load=function(req, res, next, quizId){
 	//models.Quiz.findById(quizId).then(
-	models.Quiz.find({
+	//models.Quiz.find({
+	models.Quiz.findOne({
 		where: {id: Number(quizId)},
 		include: [{model:models.Comment}],
 		order:'"Comments"."createdAt" ASC'
