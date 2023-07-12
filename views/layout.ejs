@@ -66,6 +66,58 @@
       color: white;
       padding: 15px;
     }
+
+	
+.content {
+    margin-top:25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.item {
+    margin:15px;
+    max-width:150px;
+}
+.item a p {
+    display: flex;
+    width: 100px;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgba(250, 62, 0, 0.75);
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.item a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	color:white !important;
+    text-decoration: none;
+    border: 2px solid rgba(250, 62, 0, 0.75);
+    border-radius: 20px;
+    background-color: rgb(202, 155, 121);
+    padding: 20px;
+    box-shadow: 10px 10px 5px rgb(108, 93, 93);
+    animation: twinky-button 1s linear alternate;
+}
+.item a:hover {
+    animation: none;
+    opacity: 1;
+}
+
+@keyframes twinky-button {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
